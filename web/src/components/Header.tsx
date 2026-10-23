@@ -14,7 +14,7 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-function LogoMark({ size = 52 }: { size?: number }) {
+function LogoMark({ size = 68 }: { size?: number }) {
   return (
     <span
       className="relative shrink-0 overflow-hidden rounded-full bg-white ring-1 ring-ink/10"
@@ -83,7 +83,7 @@ export function Header() {
     <>
       <div className="section-pad sticky top-3 z-50 mx-auto max-w-7xl">
         <header
-          className={`flex items-center justify-between gap-3 rounded-full px-3 py-2.5 shadow-soft transition sm:px-4 ${
+          className={`flex items-center justify-between gap-3 rounded-full px-3 py-2 shadow-soft transition sm:px-4 ${
             scrolled ? "glass" : "bg-white/90"
           }`}
         >
@@ -140,7 +140,7 @@ export function Header() {
         >
           <div className="flex items-center justify-between px-5 py-4">
             <span className="flex items-center gap-2 font-display text-lg tracking-tightest">
-              <LogoMark size={48} />
+              <LogoMark size={60} />
               {business.brand}
             </span>
             <button
