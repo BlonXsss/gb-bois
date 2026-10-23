@@ -44,6 +44,15 @@ export function Hero() {
                 Demander un devis
               </a>
             </div>
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/75">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/15">
+                <span className="text-amber-light" aria-hidden>
+                  ★
+                </span>
+                {business.rating.value}/5 · {business.rating.count} avis
+              </span>
+              <span className="text-white/60">Verneuil-l&apos;Étang · dépôt Yèbles</span>
+            </div>
           </div>
 
           <div className="text-ink">

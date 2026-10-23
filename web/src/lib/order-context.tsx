@@ -8,15 +8,18 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { business, type LengthOption } from "./business";
+import { business, priceFor, type LengthOption } from "./business";
 
 type OrderContextValue = {
   lengthId: string;
   length: LengthOption;
   qty: number;
+  nearDepot: boolean;
+  unitPrice: number;
   total: number;
   setLengthId: (id: string) => void;
   setQty: (n: number) => void;
+  setNearDepot: (v: boolean) => void;
   inc: () => void;
   dec: () => void;
   formatEuro: (n: number) => string;
@@ -30,6 +33,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     business.lengths.find((l) => l.popular)?.id ?? business.lengths[0].id;
   const [lengthId, setLengthId] = useState(defaultId);
   const [qty, setQtyState] = useState<number>(business.minOrderSteres);
+  const [nearDepot, setNearDepot] = useState(false);
 
   const length =
     business.lengths.find((l) => l.id === lengthId) ?? business.lengths[0];
@@ -46,7 +50,8 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   const inc = useCallback(() => setQty(qty + 1), [qty, setQty]);
   const dec = useCallback(() => setQty(qty - 1), [qty, setQty]);
 
-  const total = length.pricePerStere * qty;
+  const unitPrice = priceFor(length, nearDepot);
+  const total = unitPrice * qty;
   const m3Approx = Number((qty * length.m3PerStere).toFixed(2));
 
   const formatEuro = useCallback(
@@ -64,15 +69,30 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       lengthId,
       length,
       qty,
+      nearDepot,
+      unitPrice,
       total,
       setLengthId,
       setQty,
+      setNearDepot,
       inc,
       dec,
       formatEuro,
       m3Approx,
     }),
-    [lengthId, length, qty, total, setQty, inc, dec, formatEuro, m3Approx]
+    [
+      lengthId,
+      length,
+      qty,
+      nearDepot,
+      unitPrice,
+      total,
+      setQty,
+      inc,
+      dec,
+      formatEuro,
+      m3Approx,
+    ]
   );
 
   return (

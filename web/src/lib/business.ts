@@ -2,9 +2,11 @@ export type LengthOption = {
   id: string;
   label: string;
   cm: number;
+  /** Tarif standard (€ / stère) */
   pricePerStere: number;
+  /** Tarif si livraison < 30 km du dépôt Yèbles (−3 €, sauf 1 m) */
+  priceNearPerStere: number;
   useCase: string;
-  /** m³ vrac approx per stère when short-cut and loose */
   m3PerStere: number;
   popular?: boolean;
 };
@@ -23,24 +25,55 @@ export type Species = {
 };
 
 export const business = {
-  brand: "GB Bois 77",
-  legalName: "GB Bois 77",
-  tagline: "Bois de chauffage sec · Île-de-France",
-  phone: "+33 1 23 45 67 89",
-  phoneHref: "tel:+33123456789",
-  email: "contact@gbbois77.fr",
-  emailHref: "mailto:contact@gbbois77.fr",
-  address: "123 Rue du Bois, 75000 Paris",
-  hours: "Lundi au samedi, 8 h – 18 h",
-  region: "Île-de-France",
+  brand: "GB Bois",
+  brandShort: "GB Bois 77",
+  legalName: "G.B BOIS",
+  legalForm: "SAS",
+  siren: "942 509 688",
+  siret: "942 509 688 00019",
+  tva: "FR28942509688",
+  rcs: "RCS Melun",
+  tagline: "Bois de chauffage sec · Seine-et-Marne & Île-de-France",
+  phone: "06 71 73 82 76",
+  phoneHref: "tel:+33671738276",
+  phoneDisplayIntl: "+33 6 71 73 82 76",
+  whatsappHref: "https://wa.me/33671738276",
+  email: "gbbois77commandes@gmail.com",
+  emailHref: "mailto:gbbois77commandes@gmail.com",
+  website: "https://gbbois.fr",
+  logo: "/img/gb-bois-logo.png",
+  rating: { value: 4.6, count: 11, label: "Avis clients" },
+  siege: {
+    label: "Siège administratif",
+    address: "35 Rue Arthur Chaussy, 77390 Verneuil-l'Étang",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=35+Rue+Arthur+Chaussy+77390+Verneuil-l%27%C3%89tang",
+    mapsEmbed:
+      "https://maps.google.com/maps?q=35%20Rue%20Arthur%20Chaussy%2077390%20Verneuil-l%27%C3%89tang&t=&z=14&ie=UTF8&iwloc=&output=embed",
+  },
+  depot: {
+    label: "Dépôt & livraisons",
+    address: "21 Avenue de la Gare, 77390 Yèbles",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=21+Avenue+de+la+Gare+77390+Y%C3%A8bles",
+    mapsEmbed:
+      "https://maps.google.com/maps?q=21%20Avenue%20de%20la%20Gare%2077390%20Y%C3%A8bles&t=&z=14&ie=UTF8&iwloc=&output=embed",
+  },
+  address: "35 Rue Arthur Chaussy, 77390 Verneuil-l'Étang",
+  hours: "Lundi – samedi, 8 h – 17 h",
+  region: "Seine-et-Marne & Île-de-France",
   deliveryLine: "77 · 78 · 91 · 92 · 93 · 94 · 95",
+  nearDiscountKm: 30,
+  nearDiscountEuros: 3,
   freeDeliveryFromSteres: 5,
-  minOrderSteres: 2,
+  minOrderSteres: 5,
+  minOrderNote:
+    "Commande en ligne à partir de 5 stères. En dessous, appelez-nous pour les frais de livraison.",
   maxOrderSteres: 20,
-  heroBadge: "Bois sec sous abri · devis sous 24 h",
-  heroHeadline: "Livraison de bois de chauffage sec en Île-de-France",
+  heroBadge: "Stocké sous abri à Yèbles · devis gratuit",
+  heroHeadline: "Bois de chauffage sec livré en Seine-et-Marne & Île-de-France",
   heroSubtitle:
-    "Essences nobles, soigneusement stockées sous abri. Prix au stère, livraison rapide dans les départements 77 à 95 — offerte dès 5 stères.",
+    "Depuis Verneuil-l'Étang, GB Bois livre chêne, hêtre, charme et frêne stockés sous abri au dépôt de Yèbles. Tarif −3 €/stère si vous êtes à moins de 30 km du dépôt.",
   unitLabel: "stère",
   unitLabelPlural: "stères",
   priceUnitSuffix: "/ stère",
@@ -48,13 +81,16 @@ export const business = {
     hero: "/img/hero-forest.jpg",
     about: "/img/about-wood.jpg",
     midCta: "/img/cta-forest.jpg",
+    kindling: "/img/sac.jpg",
     gallery: [
-      { src: "/img/forest-5176376_1280.jpg", caption: "Forêt gérée durablement" },
-      { src: "/img/pexels-goumbik-296333.jpg", caption: "Paysages d’Île-de-France" },
-      { src: "/img/pexels-khaydenarts-923167.jpg", caption: "Nature & saison" },
+      { src: "/img/forest-5176376_1280.jpg", caption: "Forêt & essences nobles" },
+      { src: "/img/pexels-goumbik-296333.jpg", caption: "Livraison Île-de-France" },
+      { src: "/img/pexels-khaydenarts-923167.jpg", caption: "Saison de chauffe" },
       { src: "/img/pexels-mikey-dabro-293966-1285421.jpg", caption: "Bois prêt à brûler" },
+      { src: "/img/sac.jpg", caption: "Filets de bois d’allumage" },
       { src: "/img/chene.PNG", caption: "Chêne" },
       { src: "/img/Hetre.PNG", caption: "Hêtre" },
+      { src: "/img/charme.PNG", caption: "Charme" },
     ],
   },
   lengths: [
@@ -63,46 +99,111 @@ export const business = {
       label: "25 cm",
       cm: 25,
       pricePerStere: 85,
-      useCase:
-        "Courtes et nerveuses : elles s’allument vite dans un poêle ou un insert.",
+      priceNearPerStere: 82,
+      useCase: "Poêle et insert — allumage rapide, format compact.",
       m3PerStere: 0.6,
     },
     {
       id: "33",
       label: "33 cm",
       cm: 33,
-      pricePerStere: 75,
-      useCase:
-        "La longueur la plus demandée, à l’aise dans la plupart des poêles et inserts.",
+      pricePerStere: 80,
+      priceNearPerStere: 77,
+      useCase: "Le format le plus polyvalent pour la plupart des poêles et inserts.",
       m3PerStere: 0.7,
       popular: true,
+    },
+    {
+      id: "40",
+      label: "40 cm",
+      cm: 40,
+      pricePerStere: 84,
+      priceNearPerStere: 81,
+      useCase: "Poêles à grand foyer et inserts plus larges.",
+      m3PerStere: 0.75,
     },
     {
       id: "50",
       label: "50 cm",
       cm: 50,
-      pricePerStere: 70,
-      useCase:
-        "Grandes bûches pour les foyers ouverts et les larges cheminées.",
+      pricePerStere: 75,
+      priceNearPerStere: 72,
+      useCase: "Cheminées ouvertes et grands foyers.",
       m3PerStere: 0.8,
     },
+    {
+      id: "100",
+      label: "1 m",
+      cm: 100,
+      pricePerStere: 78,
+      priceNearPerStere: 78,
+      useCase: "Grande cheminée ou chaudière — tarif proximité inchangé.",
+      m3PerStere: 1.0,
+    },
   ] as LengthOption[],
+  extras: [
+    {
+      id: "kindling",
+      title: "Filets de bois d’allumage",
+      price: 10,
+      unit: "l’unité",
+      blurb:
+        "Prêts à l’emploi pour démarrer le feu. Offert avec chaque commande de bois (selon disponibilité — précisez-le dans votre message).",
+      image: "/img/sac.jpg",
+    },
+  ],
+  services: [
+    {
+      title: "Élagage",
+      text: "Taille et entretien d’arbres pour particuliers et professionnels en Seine-et-Marne. Devis selon l’ampleur des travaux.",
+    },
+    {
+      title: "Abattage",
+      text: "Abattage sécurisé et débardage. Nous intervenons autour de Verneuil-l'Étang et dans le 77.",
+    },
+    {
+      title: "Bois de chauffage",
+      text: "Vente et livraison de feuillus durs secs, stockés sous abri au dépôt de Yèbles.",
+    },
+  ],
+  process: [
+    {
+      step: "01",
+      title: "Choisissez longueur & volume",
+      text: "25, 33, 40, 50 cm ou 1 m. Minimum 5 stères en ligne.",
+    },
+    {
+      step: "02",
+      title: "Indiquez votre commune",
+      text: "À moins de 30 km de Yèbles : −3 €/stère (sauf 1 m).",
+    },
+    {
+      step: "03",
+      title: "Confirmez par téléphone ou devis",
+      text: "06 71 73 82 76 — réponse rapide, sans engagement.",
+    },
+    {
+      step: "04",
+      title: "Livraison à votre adresse",
+      text: "Depuis le dépôt de Yèbles vers le 77 et toute l’Île-de-France.",
+    },
+  ],
   reassurances: [
     {
-      title: "Bois sec",
-      text: "Stocké sous abri pour une combustion nette et un allumage facile.",
+      title: "Bois sec sous abri",
+      text: "Stocké au dépôt de Yèbles pour une combustion nette et un bon rendement.",
     },
     {
-      title: "Prix au stère",
-      text: "Tarifs clairs par longueur. Livraison offerte dès 5 stères.",
+      title: "−3 € près de Yèbles",
+      text: "Remise de proximité si votre adresse est à moins de 30 km du dépôt (sauf 1 m).",
     },
     {
-      title: "Zones claires",
-      text: "Seine-et-Marne et toute l’Île-de-France (77 à 95).",
+      title: "7 départements IDF",
+      text: "Seine-et-Marne (77) et 78, 91, 92, 93, 94, 95.",
     },
     {
-      title: "Devis sous 24 h",
-      text: "Réponse les jours ouvrés, sans engagement.",
+      title: "Devis gratuit",
+      text: "Appelez le 06 71 73 82 76 — réponse les jours ouvrés.",
     },
   ],
   species: [
@@ -135,7 +236,16 @@ export const business = {
     {
       code: "77",
       name: "Seine-et-Marne",
-      towns: ["Melun", "Meaux", "Fontainebleau", "Provins", "Torcy"],
+      towns: [
+        "Verneuil-l'Étang",
+        "Yèbles",
+        "Melun",
+        "Meaux",
+        "Fontainebleau",
+        "Provins",
+        "Chelles",
+        "Savigny-le-Temple",
+      ],
     },
     {
       code: "78",
@@ -169,48 +279,56 @@ export const business = {
     },
   ] as Zone[],
   about: {
-    title: "De la forêt au foyer",
+    title: "Fournisseur local depuis Verneuil-l'Étang",
     stats: [
       { value: "7", label: "départements" },
-      { value: "4", label: "essences" },
-      { value: "2+", label: "ans d’expérience" },
+      { value: "5", label: "longueurs" },
+      { value: "4,6", label: "note clients" },
+      { value: "−3€", label: "si < 30 km" },
     ],
     paragraphs: [
-      "GB Bois 77 est née d’une passion pour la nature et le confort du feu de bois. Nous sélectionnons et stockons nos essences sous abri pour garantir une performance optimale à chaque livraison.",
-      "Notre équipe assure un service rapide et fiable sur toute l’Île-de-France. Chaque stère est soigneusement préparé — chêne, hêtre, charme ou frêne — pour un chauffage durable et une satisfaction durable.",
+      "GB Bois (G.B BOIS, SAS) est une entreprise basée à Verneuil-l'Étang (77390), spécialisée dans la vente et la livraison de bois de chauffage sec en Seine-et-Marne et Île-de-France. Nous sélectionnons des essences nobles — chêne, hêtre, charme et frêne — et les stockons sous abri au dépôt de Yèbles.",
+      "Activité : exploitation forestière, abattage, débardage, achat et vente de grumes et de bois de chauffage, travaux paysagers. Livraison depuis Yèbles vers le 77 et les départements 78, 91, 92, 93, 94 et 95.",
     ],
   },
   faq: [
     {
-      q: "Le prix est-il au stère ou au mètre cube ?",
-      a: "Nous facturons au stère, selon la longueur de bûche choisie. Le convertisseur de la page estime le volume en m³ en vrac pour comparer avec d’autres habitudes de mesure.",
+      q: "Qui est GB Bois ?",
+      a: "GB Bois (raison sociale G.B BOIS, SAS) vend et livre du bois de chauffage sec en Seine-et-Marne et Île-de-France. Siège : 35 Rue Arthur Chaussy, 77390 Verneuil-l'Étang. Dépôt : 21 Avenue de la Gare, 77390 Yèbles. Téléphone : 06 71 73 82 76.",
     },
     {
-      q: "Quel est le minimum de commande ?",
-      a: "Le minimum est de 2 stères. La livraison est offerte à partir de 5 stères commandés.",
+      q: "Quel est le prix du bois de chauffage ?",
+      a: "De 75 € à 85 € le stère selon la longueur : 25 cm (85 €), 33 cm (80 €), 40 cm (84 €), 50 cm (75 €) et 1 m (78 €). À moins de 30 km de Yèbles : −3 €/stère (sauf 1 m). Filets d’allumage : 10 € l’unité.",
     },
     {
-      q: "Sous quel délai livrez-vous ?",
-      a: "Comptez en général quelques jours ouvrés selon la saison et votre commune. Un devis confirme le créneau avant engagement.",
+      q: "Livrez-vous dans toute la Seine-et-Marne ?",
+      a: "Oui, toute la Seine-et-Marne (77) ainsi que 91, 94, 92, 93, 78 et 95. Commande en ligne à partir de 5 stères ; en dessous, appelez pour les frais de livraison.",
     },
     {
-      q: "Le bois est-il vraiment sec ?",
-      a: "Oui. Notre bois est stocké sous abri pour une combustion optimale, peu de fumée et un allumage sans forcer. À réception, stockez-le à l’abri et à l’air.",
+      q: "Votre bois est-il bien sec ?",
+      a: "Oui. Il est soigneusement stocké sous abri au dépôt de Yèbles pour une combustion optimale et un bon rendement calorifique. Essences : chêne, hêtre, charme, frêne.",
     },
     {
-      q: "Quelle longueur pour mon appareil ?",
-      a: "25 cm pour la plupart des poêles et petits inserts. 33 cm pour le format le plus polyvalent. 50 cm pour cheminée ouverte ou grand foyer. En cas de doute, mesurez la largeur utile du foyer.",
+      q: "Proposez-vous l’élagage et l’abattage ?",
+      a: "Oui, en Seine-et-Marne (77) pour particuliers et professionnels. Tarifs selon l’ampleur des travaux — devis au 06 71 73 82 76.",
     },
     {
-      q: "Comment stocker le bois après la livraison ?",
-      a: "Sur palettes ou bastaings, jamais à même le sol. Sous un auvent ou une bâche qui couvre le dessus sans enfermer les côtés, pour laisser circuler l’air.",
+      q: "Quelle longueur choisir ?",
+      a: "25 ou 33 cm pour poêle et insert. 40 cm pour grand foyer. 50 cm pour cheminée ouverte. 1 m pour grande cheminée ou chaudière.",
     },
   ],
   midCta: {
     title: "Commune, longueur, volume. On s’occupe du reste.",
-    text: "Réponse sous 24 h. Livraison Île-de-France — offerte dès 5 stères.",
+    text: "Devis gratuit au 06 71 73 82 76. Livraison depuis Yèbles vers le 77 et l’Île-de-France.",
   },
-  footerNote: "Démo confidentielle · design Alpin adapté à GB Bois 77",
+  footerNote: "G.B BOIS · SAS · SIREN 942 509 688 · RCS Melun",
 } as const;
 
 export type Business = typeof business;
+
+export function priceFor(
+  length: LengthOption,
+  nearDepot: boolean
+): number {
+  return nearDepot ? length.priceNearPerStere : length.pricePerStere;
+}

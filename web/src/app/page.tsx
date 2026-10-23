@@ -3,12 +3,16 @@ import { Hero } from "@/components/Hero";
 import {
   About,
   Contact,
+  Extras,
   Faq,
   Footer,
   Gallery,
+  Locations,
   MidCta,
   Pricing,
+  Process,
   Reassurance,
+  Services,
   SpeciesGrid,
   StickyOrderBar,
   VolumeCalculator,
@@ -23,12 +27,16 @@ export default function HomePage() {
       <main id="contenu">
         <Hero />
         <Reassurance />
+        <Process />
         <Pricing />
+        <Extras />
         <VolumeCalculator />
         <SpeciesGrid />
+        <Services />
         <Zones />
         <Gallery />
         <About />
+        <Locations />
         <Faq />
         <MidCta />
         <Contact />

@@ -19,7 +19,7 @@ const grotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: `${business.brand} — Bois de chauffage Île-de-France`,
+  title: `${business.brand} 77 — Bois de chauffage Seine-et-Marne & IDF`,
   description: business.heroSubtitle,
   robots: { index: false, follow: false },
 };

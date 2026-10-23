@@ -1,32 +1,33 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { business } from "@/lib/business";
 
 const links = [
   { href: "#accueil", label: "Accueil" },
   { href: "#tarifs", label: "Tarifs" },
+  { href: "#services", label: "Services" },
   { href: "#zones", label: "Zones" },
   { href: "#galerie", label: "Galerie" },
   { href: "#apropos", label: "À propos" },
   { href: "#contact", label: "Contact" },
 ];
 
-function LogoMark() {
+function LogoMark({ size = 40 }: { size?: number }) {
   return (
     <span
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-amber-light"
-      aria-hidden
+      className="relative shrink-0 overflow-hidden rounded-full bg-white ring-1 ring-ink/10"
+      style={{ width: size, height: size }}
     >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M4 18L12 5l8 13H4z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-        <path d="M8 18h8" stroke="currentColor" strokeWidth="1.8" />
-      </svg>
+      <Image
+        src={business.logo}
+        alt=""
+        fill
+        className="object-contain p-0.5"
+        sizes={`${size}px`}
+        priority
+      />
     </span>
   );
 }
@@ -34,12 +35,26 @@ function LogoMark() {
 export function TopBar() {
   return (
     <div className="bg-deep text-white/90">
-      <div className="section-pad mx-auto flex max-w-7xl items-center justify-between gap-4 py-2 text-xs sm:text-sm">
-        <a href={business.phoneHref} className="font-medium hover:text-white">
-          {business.phone}
-        </a>
+      <div className="section-pad mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 py-2 text-xs sm:text-sm">
+        <div className="flex flex-wrap items-center gap-3">
+          <a href={business.phoneHref} className="font-medium hover:text-white">
+            {business.phone}
+          </a>
+          <span className="hidden text-white/40 sm:inline" aria-hidden>
+            ·
+          </span>
+          <a
+            href={business.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden text-white/75 hover:text-white sm:inline"
+          >
+            WhatsApp
+          </a>
+        </div>
         <p className="truncate text-right text-white/70">
-          Livraison <span className="text-white/90">{business.deliveryLine}</span>
+          Dépôt Yèbles · Livraison{" "}
+          <span className="text-white/90">{business.deliveryLine}</span>
         </p>
       </div>
     </div>
@@ -72,19 +87,23 @@ export function Header() {
             scrolled ? "glass" : "bg-white/90"
           }`}
         >
-          <a href="#accueil" className="flex items-center gap-2.5 pl-1">
+          <a href="#accueil" className="flex items-center gap-2.5 pl-0.5">
             <LogoMark />
             <span className="font-display text-sm font-medium tracking-tightest text-ink sm:text-base">
               {business.brand}
+              <span className="ml-1 text-amber">77</span>
             </span>
           </a>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Principal">
+          <nav
+            className="hidden items-center gap-0.5 xl:flex"
+            aria-label="Principal"
+          >
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="rounded-full px-3.5 py-2 text-sm font-medium text-muted transition hover:bg-page hover:text-ink"
+                className="rounded-full px-3 py-2 text-sm font-medium text-muted transition hover:bg-page hover:text-ink"
               >
                 {l.label}
               </a>
@@ -92,12 +111,15 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a href={business.phoneHref} className="btn-amber hidden sm:inline-flex">
+            <a
+              href={business.phoneHref}
+              className="btn-amber hidden sm:inline-flex"
+            >
               Appeler
             </a>
             <button
               type="button"
-              className="btn-slate lg:hidden"
+              className="btn-slate xl:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               onClick={() => setOpen(true)}
@@ -117,7 +139,8 @@ export function Header() {
           aria-label="Navigation"
         >
           <div className="flex items-center justify-between px-5 py-4">
-            <span className="font-display text-lg tracking-tightest">
+            <span className="flex items-center gap-2 font-display text-lg tracking-tightest">
+              <LogoMark size={36} />
               {business.brand}
             </span>
             <button
@@ -141,9 +164,17 @@ export function Header() {
               </a>
             ))}
           </nav>
-          <div className="p-6">
+          <div className="grid gap-3 p-6">
             <a href={business.phoneHref} className="btn-amber w-full">
               Appeler · {business.phone}
+            </a>
+            <a
+              href={business.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-glass w-full text-center"
+            >
+              WhatsApp
             </a>
           </div>
         </div>
