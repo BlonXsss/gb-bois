@@ -14,7 +14,7 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-function LogoMark({ size = 40 }: { size?: number }) {
+function LogoMark({ size = 52 }: { size?: number }) {
   return (
     <span
       className="relative shrink-0 overflow-hidden rounded-full bg-white ring-1 ring-ink/10"
@@ -24,7 +24,7 @@ function LogoMark({ size = 40 }: { size?: number }) {
         src={business.logo}
         alt=""
         fill
-        className="object-contain p-0.5"
+        className="object-contain p-[2px]"
         sizes={`${size}px`}
         priority
       />
@@ -140,7 +140,7 @@ export function Header() {
         >
           <div className="flex items-center justify-between px-5 py-4">
             <span className="flex items-center gap-2 font-display text-lg tracking-tightest">
-              <LogoMark size={36} />
+              <LogoMark size={48} />
               {business.brand}
             </span>
             <button
