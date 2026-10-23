@@ -1,13 +1,24 @@
-# GB Bois 77 — Démo Alpine (confidentielle)
+# GB Bois 77 — Démo Alpin (Next.js)
 
-Site démo pour présentation au client GB Bois 77, inspiré du design Alpine (réf. eurlbadhi `/alpin`).
+One-page marketing site cloning the **Alpin** visual system from [eurlbardhi.fr/alpin](https://eurlbardhi.fr/alpin/), fed by `web/src/lib/business.ts`.
 
-## Aperçu local
+## Run
 
 ```bash
-cd site && python3 -m http.server 43123
+cd web
+npm install
+npm run dev
+# or production:
+npm run build && PORT=43123 npm start
 ```
 
-Ouvrir http://127.0.0.1:43123/alpin/
+Open http://127.0.0.1:43123/
 
-`noindex` + `robots.txt` Disallow — site volontairement « caché » pour démo.
+## Swap brand
+
+Edit only `web/src/lib/business.ts` — UI reads that config.
+
+## Notes
+
+- `robots: noindex` for confidential client preview
+- Hostinger deploy pending MCP OAuth / API token

@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --page: #eef1f2;
+  --ink: #14202a;
+  --muted: #4f5d68;
+  --amber: #c98a3c;
+  --amber-light: #e4b06e;
+  --deep: #0f1a22;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  color: var(--ink);
+  background-color: var(--page);
+  background-image: radial-gradient(
+    900px 520px at 92% -8%,
+    rgba(228, 176, 110, 0.28),
+    transparent 60%
+  );
+  background-attachment: fixed;
+  min-height: 100%;
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+  }
+
+  .glass-dark {
+    background: rgba(15, 26, 34, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  .soft-card {
+    @apply rounded-3xl bg-white shadow-soft transition duration-300;
+  }
+
+  .soft-card:hover {
+    @apply shadow-lift -translate-y-0.5;
+  }
+
+  .btn-amber {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-display text-sm font-medium tracking-tightest text-ink shadow-amber transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber;
+    background: linear-gradient(135deg, #e4b06e 0%, #c98a3c 100%);
+  }
+
+  .btn-slate {
+    @apply inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 font-display text-sm font-medium tracking-tightest text-white transition hover:bg-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink;
+  }
+
+  .btn-glass {
+    @apply inline-flex items-center justify-center rounded-full glass-dark px-6 py-3 font-display text-sm font-medium tracking-tightest text-white transition hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full bg-page px-3 py-1 text-xs font-medium text-muted;
+  }
+
+  .section-pad {
+    @apply px-4 sm:px-6 lg:px-10;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1.08) translate3d(0, 0, 0);
+    }
+    to {
+      transform: scale(1) translate3d(0, -1.5%, 0);
+    }
+  }
+
+  .kenburns {
+    animation: kenburns 18s ease-out forwards;
+  }
+
+  @keyframes qty-pop {
+    0% {
+      transform: scale(1);
+    }
+    40% {
+      transform: scale(1.18);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .qty-pop {
+    animation: qty-pop 0.28s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .kenburns,
+  .qty-pop,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
