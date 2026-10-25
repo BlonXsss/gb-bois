@@ -735,19 +735,18 @@ export function Extras() {
   return (
     <section className="section-pad site-width section-y">
       <Reveal>
-        <div className="flex max-w-3xl flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-soft sm:flex-row sm:items-center">
-          <div className="flex shrink-0 items-center justify-center self-stretch bg-page/80 px-3 py-3 sm:w-[128px] sm:px-2.5 lg:w-[148px]">
-            <div className="relative h-[120px] w-[120px] sm:h-[112px] sm:w-[112px] lg:h-[128px] lg:w-[128px]">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="object-contain drop-shadow-sm"
-                sizes="128px"
-              />
-            </div>
+        <div className="flex max-w-3xl flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-soft sm:flex-row">
+          <div className="relative mx-auto mt-4 h-[132px] w-[132px] shrink-0 sm:m-0 sm:h-auto sm:w-[150px] sm:min-h-[150px] sm:self-stretch lg:w-[168px]">
+            <div className="absolute inset-0 bg-page/80 sm:rounded-none" />
+            <Image
+              src={item.image}
+              alt={item.title}
+              fill
+              className="object-contain p-2 drop-shadow-sm sm:p-3"
+              sizes="168px"
+            />
           </div>
-          <div className="flex min-w-0 flex-1 flex-col gap-3 px-4 py-4 sm:px-5 sm:py-4">
+          <div className="flex min-w-0 flex-1 flex-col gap-2.5 px-4 pb-4 pt-3 sm:px-5 sm:py-4">
             <div className="min-w-0">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
                 <p className="eyebrow !mb-0">Accessoire</p>
