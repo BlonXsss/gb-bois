@@ -159,4 +159,9 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   };
 }
 
-export const sitemapPaths = ["/", ...seoZonePages.map((z) => zonePath(z))];
+export const sitemapPaths = [
+  "/",
+  ...seoZonePages.map((z) => zonePath(z)),
+  "/mentions-legales/",
+  "/politique-confidentialite/",
+];
