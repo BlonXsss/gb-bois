@@ -968,8 +968,8 @@ export function Contact() {
                   <span className="block text-[0.7rem] uppercase tracking-[0.16em] text-muted">
                     Email · 24 h
                   </span>
-                  <span className="mt-1 block truncate font-display text-[0.95rem] tracking-tightest text-ink" title={business.email}>
-                    {business.email}
+                  <span className="mt-1 block font-display text-[0.95rem] tracking-tightest text-ink">
+                    Écrire par email
                   </span>
                   <span className="mt-1 block text-xs text-muted">
                     Réponse sous 24 h
