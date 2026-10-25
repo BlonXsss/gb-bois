@@ -1257,14 +1257,20 @@ export function Footer() {
           </p>
           <ul className="mt-4 space-y-2.5 text-sm text-white/78">
             <li>
-              <a href="#" className="inline-flex min-h-[40px] items-center hover:text-white">
+              <Link
+                href="/mentions-legales/"
+                className="inline-flex min-h-[40px] items-center hover:text-white"
+              >
                 Mentions légales
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="inline-flex min-h-[40px] items-center hover:text-white">
+              <Link
+                href="/politique-confidentialite/"
+                className="inline-flex min-h-[40px] items-center hover:text-white"
+              >
                 Politique de confidentialité
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
