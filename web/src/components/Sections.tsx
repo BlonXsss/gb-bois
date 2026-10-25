@@ -963,7 +963,20 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-5 text-center text-xs text-white/38 safe-bottom">
-        © {new Date().getFullYear()} {business.legalName}
+        <p>
+          © {new Date().getFullYear()} {business.legalName}
+        </p>
+        <p className="mt-2">
+          Website created by{" "}
+          <a
+            href="https://proagency.online"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/55 underline-offset-2 transition hover:text-amber-light hover:underline"
+          >
+            proagency.online
+          </a>
+        </p>
       </div>
     </footer>
   );

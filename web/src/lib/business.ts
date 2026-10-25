@@ -78,7 +78,7 @@ export const business = {
   unitLabelPlural: "stères",
   priceUnitSuffix: "/ stère",
   photos: {
-    hero: "/img/forest-5176376_1280.jpg",
+    hero: "/img/hero-premium.jpg",
     about: "/img/about-wood.jpg",
     midCta: "/img/cta-forest.jpg",
     kindling: "/img/sac.png",
