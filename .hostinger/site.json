@@ -1,0 +1,8 @@
+{
+  "domain": "gbbois.fr",
+  "username": "u936672062",
+  "orderId": 1007120659,
+  "demoPath": "alpin",
+  "demoUrl": "https://gbbois.fr/alpin/",
+  "note": "Alpine demo lives under /alpin only; do not full-root deploy."
+}
