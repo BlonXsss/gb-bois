@@ -735,35 +735,40 @@ export function Extras() {
   return (
     <section className="section-pad site-width section-y">
       <Reveal>
-        <div className="grid overflow-hidden rounded-[1.5rem] bg-white shadow-soft sm:grid-cols-[160px_1fr] lg:grid-cols-[200px_1fr]">
-          <div className="flex items-center justify-center bg-page/80 px-5 py-6 sm:px-4 sm:py-5">
-            <div className="relative h-[120px] w-[120px] sm:h-[132px] sm:w-[132px] lg:h-[148px] lg:w-[148px]">
+        <div className="flex flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-soft sm:flex-row sm:items-stretch">
+          <div className="flex shrink-0 items-center justify-center bg-page/80 px-4 py-4 sm:w-[140px] sm:px-3 lg:w-[168px]">
+            <div className="relative h-[108px] w-[108px] sm:h-[118px] sm:w-[118px] lg:h-[136px] lg:w-[136px]">
               <Image
                 src={item.image}
                 alt={item.title}
                 fill
                 className="object-contain drop-shadow-sm"
-                sizes="148px"
+                sizes="136px"
               />
             </div>
           </div>
-          <div className="flex flex-col justify-center gap-3 p-5 sm:gap-3.5 sm:p-6 lg:px-8 lg:py-6">
-            <div>
-              <p className="eyebrow">Accessoire</p>
-              <h2 className="mt-1.5 font-display text-xl font-medium tracking-tightest sm:text-2xl">
+          <div className="flex min-w-0 flex-1 flex-col justify-center gap-2.5 px-5 py-4 sm:flex-row sm:items-center sm:gap-6 sm:px-6 sm:py-4 lg:gap-8">
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p className="eyebrow !mb-0">Accessoire</p>
+                <p className="font-display text-lg tracking-tightest text-ink sm:text-xl">
+                  {item.price} €{" "}
+                  <span className="text-sm font-sans font-normal text-muted">
+                    {item.unit}
+                  </span>
+                </p>
+              </div>
+              <h2 className="mt-1 font-display text-lg font-medium tracking-tightest sm:text-xl">
                 {item.title}
               </h2>
-              <p className="mt-1.5 font-display text-xl tracking-tightest text-ink">
-                {item.price} €{" "}
-                <span className="text-sm font-sans font-normal text-muted">
-                  {item.unit}
-                </span>
+              <p className="mt-1.5 max-w-xl text-sm leading-snug text-muted">
+                {item.blurb}
               </p>
             </div>
-            <p className="max-w-xl text-sm leading-relaxed text-muted sm:text-[0.95rem]">
-              {item.blurb}
-            </p>
-            <a href="#contact" className="btn-amber mt-0.5 w-fit !min-h-[44px] !px-5 !py-2.5 text-sm">
+            <a
+              href="#contact"
+              className="btn-amber w-fit shrink-0 !min-h-[44px] !px-5 !py-2.5 text-sm sm:self-center"
+            >
               En ajouter à ma commande
             </a>
           </div>
