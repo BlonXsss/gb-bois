@@ -8,6 +8,7 @@ export type LengthOption = {
   priceNearPerStere: number;
   useCase: string;
   m3PerStere: number;
+  image: string;
   popular?: boolean;
 };
 
@@ -110,6 +111,7 @@ export const business = {
       priceNearPerStere: 82,
       useCase: "Poêle et insert — allumage rapide, format compact.",
       m3PerStere: 0.6,
+      image: "/img/length-25.jpg",
     },
     {
       id: "33",
@@ -119,6 +121,7 @@ export const business = {
       priceNearPerStere: 77,
       useCase: "Le format le plus polyvalent pour la plupart des poêles et inserts.",
       m3PerStere: 0.7,
+      image: "/img/length-33.jpg",
       popular: true,
     },
     {
@@ -129,6 +132,7 @@ export const business = {
       priceNearPerStere: 81,
       useCase: "Poêles à grand foyer et inserts plus larges.",
       m3PerStere: 0.75,
+      image: "/img/length-40.jpg",
     },
     {
       id: "50",
@@ -138,6 +142,7 @@ export const business = {
       priceNearPerStere: 72,
       useCase: "Cheminées ouvertes et grands foyers.",
       m3PerStere: 0.8,
+      image: "/img/length-50.jpg",
     },
     {
       id: "100",
@@ -147,6 +152,7 @@ export const business = {
       priceNearPerStere: 78,
       useCase: "Grande cheminée ou chaudière — tarif proximité inchangé.",
       m3PerStere: 1.0,
+      image: "/img/length-100.jpg",
     },
   ] as LengthOption[],
   extras: [
@@ -157,7 +163,7 @@ export const business = {
       unit: "l’unité",
       blurb:
         "Prêts à l’emploi pour démarrer le feu. Offert avec chaque commande de bois (selon disponibilité — précisez-le dans votre message).",
-      image: "/img/sac.png",
+      image: "/img/sac-fit.png",
     },
   ],
   services: [

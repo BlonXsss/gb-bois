@@ -121,6 +121,15 @@ export function Pricing() {
                     Le plus choisi
                   </span>
                 ) : null}
+                <div className="relative mb-4 aspect-[4/3] w-full overflow-hidden rounded-[1.25rem] bg-page">
+                  <Image
+                    src={opt.image}
+                    alt={`Bois de chauffage ${opt.label}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1280px) 50vw, 20vw"
+                  />
+                </div>
                 <h3 className="font-display text-xl font-medium tracking-tightest">
                   {opt.label}
                 </h3>
@@ -727,14 +736,16 @@ export function Extras() {
     <section className="section-pad site-width section-y">
       <Reveal>
         <div className="grid overflow-hidden rounded-[1.75rem] bg-white shadow-soft lg:grid-cols-2">
-          <div className="img-zoom relative min-h-[260px] sm:min-h-[300px]">
-            <Image
-              src={item.image}
-              alt={item.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+          <div className="relative flex min-h-[240px] items-center justify-center bg-page/80 px-8 py-10 sm:min-h-[280px] sm:px-12">
+            <div className="relative h-[180px] w-[180px] sm:h-[220px] sm:w-[220px]">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-contain drop-shadow-sm"
+                sizes="220px"
+              />
+            </div>
           </div>
           <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-12">
             <p className="eyebrow">Accessoire</p>
