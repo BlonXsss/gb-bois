@@ -49,7 +49,7 @@ export function Hero() {
                 <span className="text-amber-light" aria-hidden>
                   ★
                 </span>
-                {business.rating.value}/5 · {business.rating.count} avis
+                {business.rating.value} ({business.rating.count})
               </span>
               <span className="text-white/60">Verneuil-l&apos;Étang · dépôt Yèbles</span>
             </div>

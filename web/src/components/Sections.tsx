@@ -457,7 +457,7 @@ export function About() {
               <span className="chip">{business.siege.address}</span>
               <span className="chip">{business.hours}</span>
               <span className="chip">
-                ★ {business.rating.value}/5 · {business.rating.count} avis
+                ★ {business.rating.value} ({business.rating.count})
               </span>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
