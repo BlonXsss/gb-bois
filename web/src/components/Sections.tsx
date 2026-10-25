@@ -25,10 +25,10 @@ export function Reassurance() {
   ];
   return (
     <section className="section-pad site-width section-y">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
         {business.reassurances.map((r, i) => (
           <Reveal key={r.title} className={`reveal-delay-${(i % 3) + 1}`}>
-            <article className="h-full rounded-[1.75rem] bg-white/80 p-6 sm:p-7">
+            <article className="h-full rounded-[1.35rem] bg-white/80 p-4 sm:rounded-[1.75rem] sm:p-7">
               <IconBox>
                 <svg width="20" height="20" viewBox="0 0 24 24">
                   {icons[i]}
@@ -105,7 +105,7 @@ export function Pricing() {
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-5">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5 xl:gap-5">
         {business.lengths.map((opt) => {
           const active = opt.id === lengthId;
           const price = nearDepot ? opt.priceNearPerStere : opt.pricePerStere;
@@ -318,11 +318,11 @@ export function SpeciesGrid() {
           </p>
         </div>
       </Reveal>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
         {business.species.map((s, i) => (
           <Reveal key={s.name} className={`reveal-delay-${(i % 3) + 1}`}>
-            <article className="overflow-hidden rounded-[1.75rem] bg-white/90 p-5 sm:p-6">
-              <div className="mb-5 relative h-[5.5rem] w-[5.5rem]">
+            <article className="overflow-hidden rounded-[1.35rem] bg-white/90 p-3.5 sm:rounded-[1.75rem] sm:p-6">
+              <div className="mb-3 relative h-[4.25rem] w-[4.25rem] sm:mb-5 sm:h-[5.5rem] sm:w-[5.5rem]">
                 <Image
                   src={s.image}
                   alt={s.name}
@@ -476,14 +476,14 @@ export function Gallery() {
   const slides = business.photos.gallery;
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [perView, setPerView] = useState(1);
+  const [perView, setPerView] = useState(2);
   const count = slides.length;
   const maxIndex = Math.max(0, count - perView);
 
   useEffect(() => {
     const update = () => {
       const w = window.innerWidth;
-      setPerView(w >= 1024 ? 3 : w >= 640 ? 2 : 1);
+      setPerView(w >= 1024 ? 3 : 2);
     };
     update();
     window.addEventListener("resize", update);
@@ -576,17 +576,17 @@ export function Gallery() {
                   className="img-zoom relative shrink-0 overflow-hidden rounded-[1.5rem] bg-deep/5 px-1.5 sm:px-2"
                   style={{ width: `${stepPct}%` }}
                 >
-                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.35rem] sm:aspect-[3/4]">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.15rem] sm:rounded-[1.35rem]">
                     <Image
                       src={g.src}
                       alt={g.caption}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-deep/75 via-transparent to-transparent" />
-                    <figcaption className="absolute inset-x-0 bottom-0 px-4 pb-4 pt-12">
-                      <span className="font-display text-base tracking-tightest text-white sm:text-lg">
+                    <figcaption className="absolute inset-x-0 bottom-0 px-2.5 pb-2.5 pt-8 sm:px-4 sm:pb-4 sm:pt-12">
+                      <span className="font-display text-sm tracking-tightest text-white sm:text-lg">
                         {g.caption}
                       </span>
                     </figcaption>
@@ -695,17 +695,17 @@ export function Process() {
           </h2>
         </div>
       </Reveal>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5">
         {business.process.map((p, i) => (
           <Reveal key={p.step} className={`reveal-delay-${(i % 3) + 1}`}>
-            <article className="h-full rounded-[1.75rem] bg-white/85 p-6 sm:p-7">
+            <article className="h-full rounded-[1.35rem] bg-white/85 p-4 sm:rounded-[1.75rem] sm:p-7">
               <p className="font-display text-sm tracking-tightest text-amber">
                 {p.step}
               </p>
-              <h3 className="mt-3 font-display text-xl font-medium tracking-tightest">
+              <h3 className="mt-2 font-display text-base font-medium tracking-tightest sm:mt-3 sm:text-xl">
                 {p.title}
               </h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-muted">{p.text}</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted sm:mt-2.5 sm:text-sm">{p.text}</p>
             </article>
           </Reveal>
         ))}
@@ -727,10 +727,10 @@ export function Services() {
           </p>
         </div>
       </Reveal>
-      <div className="grid gap-4 lg:grid-cols-3 lg:gap-5">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
         {business.services.map((s) => (
           <Reveal key={s.title}>
-            <article className="h-full rounded-[1.75rem] bg-white/90 p-6 sm:p-7">
+            <article className="h-full rounded-[1.35rem] bg-white/90 p-5 sm:rounded-[1.75rem] sm:p-7">
               <h3 className="font-display text-xl font-medium tracking-tightest sm:text-[1.35rem]">
                 {s.title}
               </h3>

@@ -19,6 +19,7 @@ import {
   VolumeCalculator,
   Zones,
 } from "@/components/Sections";
+import { HomeSeo } from "@/components/HomeSeo";
 import { business } from "@/lib/business";
 import {
   buildPageMetadata,
@@ -63,6 +64,7 @@ export default function HomePage() {
         <About />
         <Locations />
         <Faq />
+        <HomeSeo />
         <MidCta />
         <Contact />
       </main>

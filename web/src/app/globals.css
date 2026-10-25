@@ -11,7 +11,7 @@
   --deep: #0c161e;
   --glass: rgba(255, 255, 255, 0.68);
   --glass-border: rgba(255, 255, 255, 0.58);
-  --section-y: clamp(3.25rem, 6vw, 5.5rem);
+  --section-y: clamp(2.25rem, 4.5vw, 5.5rem);
   --safe-b: env(safe-area-inset-bottom, 0px);
   --safe-t: env(safe-area-inset-top, 0px);
 }
