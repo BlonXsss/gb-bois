@@ -904,77 +904,145 @@ export function Contact() {
     <section id="contact" className="section-pad site-width section-y">
       <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
         <Reveal>
-          <div className="space-y-4">
-            <p className="eyebrow">Contact</p>
-            <h2 className="display-title">Contactez GB Bois</h2>
-            <p className="display-lead">
-              Pour un devis rapide, appelez-nous. Par email, réponse sous 24 h.
-              Ouverts {business.hours.toLowerCase()}.
-            </p>
-            <a
-              href={business.phoneHref}
-              className="soft-card soft-card-interactive block border border-amber/25 p-5 sm:p-6"
-            >
-              <p className="text-[0.7rem] uppercase tracking-[0.16em] text-amber">
-                Téléphone — le plus rapide
-              </p>
-              <p className="mt-2 font-display text-xl tracking-tightest">
-                {business.phone}
-              </p>
-              <p className="mt-2 text-sm text-muted">
-                {business.phoneDevisNote}
-              </p>
-            </a>
-            <a
-              href={business.emailHref}
-              className="soft-card soft-card-interactive block p-5 sm:p-6"
-            >
-              <p className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-                Email
-              </p>
-              <p className="mt-2 break-all font-display text-lg tracking-tightest">
-                {business.email}
-              </p>
-              <p className="mt-2 text-sm text-muted">
-                {business.emailDevisNote}
-              </p>
-            </a>
-            <a
-              href={business.whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="soft-card soft-card-interactive block p-5 sm:p-6"
-            >
-              <p className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-                WhatsApp
-              </p>
-              <p className="mt-2 font-display text-xl tracking-tightest">
-                Écrire sur WhatsApp
-              </p>
-            </a>
-            <div className="soft-card p-5 sm:p-6">
-              <p className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-                Disponibilité
-              </p>
-              <p className="mt-2 font-display text-lg tracking-tightest">
-                {business.hours}
-              </p>
-              <p className="mt-2 text-sm text-muted">
-                Appels et devis acceptés pendant ces horaires.
+          <div className="space-y-5">
+            <div>
+              <p className="eyebrow">Contact</p>
+              <h2 className="display-title">Contactez GB Bois</h2>
+              <p className="display-lead mt-3">
+                Pour un devis rapide, appelez-nous. Par email, réponse sous 24 h.
               </p>
             </div>
-            <div className="soft-card p-5 sm:p-6">
-              <p className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-                Votre sélection
+
+            <a
+              href={business.phoneHref}
+              className="group relative block overflow-hidden rounded-[1.75rem] bg-deep p-6 text-white shadow-lift transition duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:p-7"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(201,162,94,0.28),transparent_55%)]" />
+              <div className="relative flex items-start gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-light text-ink transition duration-300 group-hover:scale-105">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path
+                      d="M6.6 10.8c1.4 2.7 3.9 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.4 21 3 12.6 3 2.7c0-.6.4-1 1-1H7c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.2 1.1l-2.8 2.2z"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-amber-light">
+                    Téléphone — le plus rapide
+                  </p>
+                  <p className="mt-2 font-display text-2xl tracking-tightest sm:text-[1.85rem]">
+                    {business.phone}
+                  </p>
+                  <p className="mt-2 text-sm text-white/70">
+                    {business.phoneDevisNote}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-amber-light transition group-hover:gap-2.5">
+                    Appeler maintenant
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              <a
+                href={business.emailHref}
+                className="soft-card soft-card-interactive flex gap-3 p-4 sm:p-5"
+              >
+                <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-page text-ink">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path
+                      d="M4 6h16v12H4V6zm0 0l8 7 8-7"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-[0.7rem] uppercase tracking-[0.16em] text-muted">
+                    Email · 24 h
+                  </span>
+                  <span className="mt-1 block truncate font-display text-[0.95rem] tracking-tightest text-ink" title={business.email}>
+                    {business.email}
+                  </span>
+                  <span className="mt-1 block text-xs text-muted">
+                    Réponse sous 24 h
+                  </span>
+                </span>
+              </a>
+
+              <a
+                href={business.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="soft-card soft-card-interactive flex gap-3 p-4 sm:p-5"
+              >
+                <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#25D366]/12 text-[#128C7E]">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.76.46 3.48 1.34 5L2 22l5.25-1.38a9.86 9.86 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.79 14.18c-.24.68-1.4 1.25-1.93 1.33-.49.07-1.12.1-1.81-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.93-4.36-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.36.26-.29.57-.36.76-.36h.55c.18 0 .42-.07.65.5.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.7-.82.89-1.1.19-.28.38-.23.64-.14.26.1 1.66.78 1.95.93.28.14.47.21.54.33.07.12.07.68-.17 1.36z" />
+                  </svg>
+                </span>
+                <span>
+                  <span className="block text-[0.7rem] uppercase tracking-[0.16em] text-muted">
+                    WhatsApp
+                  </span>
+                  <span className="mt-1 block font-display text-[0.95rem] tracking-tightest text-ink">
+                    Écrire maintenant
+                  </span>
+                  <span className="mt-1 block text-xs text-muted">
+                    Message direct
+                  </span>
+                </span>
+              </a>
+            </div>
+
+            <div className="flex items-center gap-3 rounded-[1.35rem] border border-ink/8 bg-white/80 px-4 py-3.5 backdrop-blur-sm sm:px-5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-page text-ink">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.6" />
+                  <path d="M12 8v4l3 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                </svg>
+              </span>
+              <div>
+                <p className="font-display text-base tracking-tightest text-ink">
+                  {business.hours}
+                </p>
+                <p className="text-sm text-muted">
+                  Appels et devis acceptés pendant ces horaires
+                </p>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-[1.75rem] border border-amber/30 bg-gradient-to-br from-amber-light/40 via-white to-white p-5 shadow-[0_10px_30px_-18px_rgba(80,55,20,0.35)] sm:p-6">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-[0.7rem] uppercase tracking-[0.16em] text-amber">
+                    Votre sélection
+                  </p>
+                  <p className="mt-2 font-display text-xl tracking-tightest text-ink">
+                    {length.label} · {qty} {business.unitLabelPlural}
+                  </p>
+                  {nearDepot ? (
+                    <p className="mt-1 text-sm text-muted">Proximité Yèbles (−3 €)</p>
+                  ) : null}
+                </div>
+                <p className="font-display text-2xl tracking-tightest text-amber sm:text-3xl">
+                  {formatEuro(total)}
+                </p>
+              </div>
+              <p className="mt-4 flex items-center gap-2 border-t border-ink/8 pt-3 text-xs text-muted">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden className="shrink-0 text-amber">
+                  <path d="M12 21s7-4.5 7-11a7 7 0 10-14 0c0 6.5 7 11 7 11z" stroke="currentColor" strokeWidth="1.6" />
+                  <circle cx="12" cy="10" r="2.2" stroke="currentColor" strokeWidth="1.6" />
+                </svg>
+                Livraison depuis {business.depot.address}
               </p>
-              <p className="mt-2 font-display text-lg tracking-tightest">
-                {length.label} · {qty} {business.unitLabelPlural}
-                {nearDepot ? " · proximité Yèbles" : ""}
-              </p>
-              <p className="mt-1 font-display text-2xl tracking-tightest text-amber">
-                {formatEuro(total)}
-              </p>
-              <p className="mt-2 text-xs text-muted">{business.depot.address}</p>
             </div>
           </div>
         </Reveal>
