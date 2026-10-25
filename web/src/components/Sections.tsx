@@ -867,7 +867,7 @@ export function MidCta() {
             <h2 className="max-w-lg font-display text-[1.75rem] font-medium tracking-tightest text-white sm:text-4xl">
               {business.midCta.title}
             </h2>
-            <p className="mt-4 max-w-md text-[0.975rem] leading-relaxed text-white/78 sm:text-base">
+            <p className="mt-4 max-w-md text-[0.975rem] leading-relaxed text-white sm:text-base">
               {business.midCta.text}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
