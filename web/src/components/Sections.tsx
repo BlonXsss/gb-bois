@@ -735,23 +735,23 @@ export function Extras() {
   return (
     <section className="section-pad site-width section-y">
       <Reveal>
-        <div className="flex flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-soft sm:flex-row sm:items-stretch">
-          <div className="flex shrink-0 items-center justify-center bg-page/80 px-4 py-4 sm:w-[140px] sm:px-3 lg:w-[168px]">
-            <div className="relative h-[108px] w-[108px] sm:h-[118px] sm:w-[118px] lg:h-[136px] lg:w-[136px]">
+        <div className="flex max-w-3xl flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-soft sm:flex-row sm:items-center">
+          <div className="flex shrink-0 items-center justify-center self-stretch bg-page/80 px-3 py-3 sm:w-[128px] sm:px-2.5 lg:w-[148px]">
+            <div className="relative h-[120px] w-[120px] sm:h-[112px] sm:w-[112px] lg:h-[128px] lg:w-[128px]">
               <Image
                 src={item.image}
                 alt={item.title}
                 fill
                 className="object-contain drop-shadow-sm"
-                sizes="136px"
+                sizes="128px"
               />
             </div>
           </div>
-          <div className="flex min-w-0 flex-1 flex-col justify-center gap-2.5 px-5 py-4 sm:flex-row sm:items-center sm:gap-6 sm:px-6 sm:py-4 lg:gap-8">
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-3 px-4 py-4 sm:px-5 sm:py-4">
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
                 <p className="eyebrow !mb-0">Accessoire</p>
-                <p className="font-display text-lg tracking-tightest text-ink sm:text-xl">
+                <p className="font-display text-base tracking-tightest text-ink sm:text-lg">
                   {item.price} €{" "}
                   <span className="text-sm font-sans font-normal text-muted">
                     {item.unit}
@@ -761,13 +761,13 @@ export function Extras() {
               <h2 className="mt-1 font-display text-lg font-medium tracking-tightest sm:text-xl">
                 {item.title}
               </h2>
-              <p className="mt-1.5 max-w-xl text-sm leading-snug text-muted">
+              <p className="mt-1 text-sm leading-snug text-muted">
                 {item.blurb}
               </p>
             </div>
             <a
               href="#contact"
-              className="btn-amber w-fit shrink-0 !min-h-[44px] !px-5 !py-2.5 text-sm sm:self-center"
+              className="btn-amber w-fit !min-h-[42px] !px-4 !py-2 text-sm"
             >
               En ajouter à ma commande
             </a>
