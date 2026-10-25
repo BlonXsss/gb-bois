@@ -202,20 +202,54 @@ export function ZonePageView({ zone }: { zone: SeoZonePage }) {
       ) : (
         <section className="section-pad site-width pb-8 sm:pb-10">
           <Reveal>
-            <p className="eyebrow">Communes · {zone.towns.length}</p>
-            <h2 className="display-title mt-3">
-              Toutes les communes livrées en {zone.name} ({zone.code})
-            </h2>
-            <p className="display-lead mt-2 max-w-2xl">
-              Liste complète des {zone.towns.length} communes du département.
-              Confirmez votre adresse au devis — {business.phone}.
-            </p>
-            <div className="mt-5 columns-2 gap-x-4 text-[0.7rem] leading-relaxed text-ink sm:mt-6 sm:columns-3 sm:text-xs md:columns-4 lg:columns-5">
-              {zone.towns.map((town) => (
-                <span key={town} className="mb-1 block break-inside-avoid text-muted">
-                  {town}
-                </span>
-              ))}
+            <div className="overflow-hidden rounded-[1.75rem] border border-ink/8 bg-white/90 shadow-soft">
+              <div className="border-b border-ink/6 bg-gradient-to-br from-[#1a1714] via-[#2a241c] to-[#3d3428] px-5 py-6 sm:px-7 sm:py-7">
+                <p className="text-[0.68rem] font-medium uppercase tracking-[0.16em] text-amber-light">
+                  Communes · {zone.towns.length}
+                </p>
+                <h2 className="mt-2 font-display text-2xl tracking-tightest text-white sm:text-3xl">
+                  Toutes les communes livrées en {zone.name} ({zone.code})
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/65">
+                  Liste complète des {zone.towns.length} communes du département.
+                  Confirmez votre adresse au devis —{" "}
+                  <a
+                    href={business.phoneHref}
+                    className="text-amber-light underline decoration-amber-light/35 underline-offset-4"
+                  >
+                    {business.phone}
+                  </a>
+                  .
+                </p>
+              </div>
+              <div className="px-4 py-5 sm:px-6 sm:py-6">
+                <div className="columns-2 gap-x-5 text-[0.72rem] leading-relaxed sm:columns-3 sm:text-xs md:columns-4 lg:columns-5">
+                  {Object.entries(
+                    zone.towns.reduce<Record<string, string[]>>((acc, town) => {
+                      const letter = town
+                        .normalize("NFD")
+                        .replace(/\p{M}/gu, "")
+                        .charAt(0)
+                        .toUpperCase();
+                      (acc[letter] ??= []).push(town);
+                      return acc;
+                    }, {}),
+                  )
+                    .sort(([a], [b]) => a.localeCompare(b, "fr"))
+                    .map(([letter, towns]) => (
+                      <div key={letter} className="mb-4 break-inside-avoid">
+                        <p className="mb-1.5 font-display text-sm tracking-tightest text-amber">
+                          {letter}
+                        </p>
+                        <ul className="space-y-0.5 text-muted">
+                          {towns.map((town) => (
+                            <li key={town}>{town}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                </div>
+              </div>
             </div>
           </Reveal>
         </section>
