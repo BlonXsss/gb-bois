@@ -4,7 +4,7 @@ import { OrderConfigurator } from "./OrderConfigurator";
 
 export function Hero() {
   return (
-    <section id="accueil" className="section-pad mx-auto max-w-7xl pt-4">
+    <section id="accueil" className="section-pad site-width pt-4">
       <div className="relative overflow-hidden rounded-[2rem] bg-deep text-white shadow-lift">
         <div className="absolute inset-0">
           <Image

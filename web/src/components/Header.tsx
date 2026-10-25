@@ -35,7 +35,7 @@ function LogoMark({ size = 68 }: { size?: number }) {
 export function TopBar() {
   return (
     <div className="bg-deep text-white/90">
-      <div className="section-pad mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 py-2 text-xs sm:text-sm">
+      <div className="section-pad site-width flex flex-wrap items-center justify-between gap-2 py-2 text-xs sm:text-sm">
         <div className="flex flex-wrap items-center gap-3">
           <a href={business.phoneHref} className="font-medium hover:text-white">
             {business.phone}
@@ -81,7 +81,7 @@ export function Header() {
 
   return (
     <>
-      <div className="section-pad sticky top-3 z-50 mx-auto max-w-7xl">
+      <div className="section-pad site-width sticky top-5 z-50 mt-1 sm:mt-2 sm:top-6">
         <header
           className={`flex items-center justify-between gap-3 rounded-full px-3 py-2 shadow-soft transition sm:px-4 ${
             scrolled ? "glass" : "bg-white/90"

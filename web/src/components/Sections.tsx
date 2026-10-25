@@ -23,7 +23,7 @@ export function Reassurance() {
     <path key="4" d="M5 12h14M12 5v14" stroke="currentColor" strokeWidth="1.6" />,
   ];
   return (
-    <section className="section-pad mx-auto max-w-7xl py-12">
+    <section className="section-pad site-width py-12">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {business.reassurances.map((r, i) => (
           <Reveal key={r.title}>
@@ -60,7 +60,7 @@ export function Pricing() {
   } = useOrder();
 
   return (
-    <section id="tarifs" className="section-pad mx-auto max-w-7xl py-8 sm:py-14">
+    <section id="tarifs" className="section-pad site-width py-8 sm:py-14">
       <Reveal>
         <div className="mx-auto mb-8 max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-[0.16em] text-amber">
@@ -200,7 +200,7 @@ export function VolumeCalculator() {
   const m3 = Number((steres * length.m3PerStere).toFixed(1));
 
   return (
-    <section className="section-pad mx-auto max-w-7xl py-8">
+    <section className="section-pad site-width py-8">
       <Reveal>
         <div className="soft-card overflow-hidden lg:grid lg:grid-cols-2">
           <div className="border-b border-ink/5 p-6 sm:p-8 lg:border-b-0 lg:border-r">
@@ -298,7 +298,7 @@ export function VolumeCalculator() {
 
 export function SpeciesGrid() {
   return (
-    <section id="essences" className="section-pad mx-auto max-w-7xl py-12">
+    <section id="essences" className="section-pad site-width py-12">
       <Reveal>
         <div className="mb-10 max-w-2xl">
           <p className="text-sm font-medium uppercase tracking-[0.16em] text-amber">
@@ -344,7 +344,7 @@ export function SpeciesGrid() {
 
 export function Zones() {
   return (
-    <section id="zones" className="section-pad mx-auto max-w-7xl py-8">
+    <section id="zones" className="section-pad site-width py-8">
       <Reveal>
         <div className="rounded-[2rem] bg-deep px-5 py-10 text-white sm:px-8 sm:py-14">
           <div className="mx-auto mb-10 max-w-2xl text-center">
@@ -383,7 +383,7 @@ export function Zones() {
 
 export function Gallery() {
   return (
-    <section id="galerie" className="section-pad mx-auto max-w-7xl py-12">
+    <section id="galerie" className="section-pad site-width py-12">
       <Reveal>
         <h2 className="mb-8 font-display text-3xl font-medium tracking-tightest sm:text-4xl">
           Galerie
@@ -415,7 +415,7 @@ export function Gallery() {
 
 export function About() {
   return (
-    <section id="apropos" className="section-pad mx-auto max-w-7xl py-12">
+    <section id="apropos" className="section-pad site-width py-12">
       <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
         <Reveal>
           <div className="relative overflow-hidden rounded-[2rem]">
@@ -482,7 +482,7 @@ export function About() {
 
 export function Process() {
   return (
-    <section className="section-pad mx-auto max-w-7xl py-10">
+    <section className="section-pad site-width py-10">
       <Reveal>
         <div className="mb-8 max-w-2xl">
           <p className="text-sm font-medium uppercase tracking-[0.16em] text-amber">
@@ -514,7 +514,7 @@ export function Process() {
 
 export function Services() {
   return (
-    <section id="services" className="section-pad mx-auto max-w-7xl py-10">
+    <section id="services" className="section-pad site-width py-10">
       <Reveal>
         <div className="mb-8 max-w-2xl">
           <p className="text-sm font-medium uppercase tracking-[0.16em] text-amber">
@@ -554,7 +554,7 @@ export function Services() {
 export function Extras() {
   const item = business.extras[0];
   return (
-    <section className="section-pad mx-auto max-w-7xl py-8">
+    <section className="section-pad site-width py-8">
       <Reveal>
         <div className="soft-card grid overflow-hidden lg:grid-cols-2">
           <div className="relative min-h-[240px]">
@@ -592,7 +592,7 @@ export function Extras() {
 
 export function Locations() {
   return (
-    <section id="adresses" className="section-pad mx-auto max-w-7xl py-10">
+    <section id="adresses" className="section-pad site-width py-10">
       <Reveal>
         <div className="mb-8 max-w-2xl">
           <p className="text-sm font-medium uppercase tracking-[0.16em] text-amber">
@@ -641,7 +641,7 @@ export function Locations() {
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="section-pad mx-auto max-w-7xl py-8">
+    <section id="faq" className="section-pad site-width py-8">
       <Reveal>
         <div className="soft-card overflow-hidden p-2 sm:p-4">
           <div className="px-4 pb-2 pt-4 sm:px-6">
@@ -687,7 +687,7 @@ export function Faq() {
 
 export function MidCta() {
   return (
-    <section className="section-pad mx-auto max-w-7xl py-8">
+    <section className="section-pad site-width py-8">
       <Reveal>
         <div className="relative overflow-hidden rounded-[2rem]">
           <Image
@@ -723,7 +723,7 @@ export function Contact() {
   const [status, setStatus] = useState("");
 
   return (
-    <section id="contact" className="section-pad mx-auto max-w-7xl py-12">
+    <section id="contact" className="section-pad site-width py-12">
       <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
         <Reveal>
           <div className="space-y-4">
@@ -887,7 +887,7 @@ export function StickyOrderBar() {
 export function Footer() {
   return (
     <footer className="mt-8 bg-deep text-white">
-      <div className="section-pad mx-auto grid max-w-7xl gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="section-pad site-width grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <p className="font-display text-xl tracking-tightest">
             {business.brand}{" "}
