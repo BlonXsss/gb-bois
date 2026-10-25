@@ -32,17 +32,17 @@ export function Hero() {
               {business.heroSubtitle}
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-8">
-              <a href="#tarifs" className="btn-amber min-w-[9.5rem]">
+              <a href={business.phoneHref} className="btn-amber min-w-[9.5rem]">
+                Appeler — devis ~5 min
+              </a>
+              <a href="#tarifs" className="btn-glass min-w-[9.5rem]">
                 Commander
               </a>
-              <a href={business.phoneHref} className="btn-glass min-w-[9.5rem]">
-                Appeler
-              </a>
               <a
-                href="#contact"
+                href={business.emailHref}
                 className="min-h-[48px] inline-flex items-center px-1 font-display text-sm font-medium tracking-tightest text-white/90 underline decoration-white/35 underline-offset-[6px] transition hover:decoration-white"
               >
-                Demander un devis
+                Devis email · 24 h
               </a>
             </div>
             <p className="mt-6 text-sm text-white/68 hero-copy-delay">

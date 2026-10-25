@@ -60,7 +60,8 @@ export const business = {
       "https://maps.google.com/maps?q=21%20Avenue%20de%20la%20Gare%2077390%20Y%C3%A8bles&t=&z=14&ie=UTF8&iwloc=&output=embed",
   },
   address: "35 Rue Arthur Chaussy, 77390 Verneuil-l'Étang",
-  hours: "Lundi – samedi, 8 h – 17 h",
+  hours: "Lundi – samedi, 8 h – 18 h",
+  hoursShort: "Lun–sam · 8 h – 18 h",
   region: "Seine-et-Marne & Île-de-France",
   deliveryLine: "77 · 78 · 91 · 92 · 93 · 94 · 95",
   nearDiscountKm: 30,
@@ -70,10 +71,13 @@ export const business = {
   minOrderNote:
     "Commande en ligne à partir de 5 stères. En dessous, appelez-nous pour les frais de livraison.",
   maxOrderSteres: 20,
+  phoneDevisNote: "Devis au téléphone en environ 5 minutes",
+  emailDevisNote: "Devis par email — réponse sous 24 h",
+  callCtaLabel: "Appelez-nous pour un devis rapide",
   heroBadge: "Stocké sous abri à Yèbles · devis gratuit",
   heroHeadline: "Bois de chauffage sec livré en Seine-et-Marne & Île-de-France",
   heroSubtitle:
-    "Depuis Verneuil-l'Étang, GB Bois livre chêne, hêtre, charme et frêne stockés sous abri au dépôt de Yèbles. Tarif −3 €/stère si vous êtes à moins de 30 km du dépôt.",
+    "Appelez pour un devis en ~5 minutes. Par email, réponse sous 24 h. Joignables lundi à samedi, 8 h – 18 h. Livraison depuis Yèbles — tarif −3 €/stère à moins de 30 km du dépôt.",
   unitLabel: "stère",
   unitLabelPlural: "stères",
   priceUnitSuffix: "/ stère",
@@ -201,8 +205,8 @@ export const business = {
       text: "Seine-et-Marne (77) et 78, 91, 92, 93, 94, 95.",
     },
     {
-      title: "Devis gratuit",
-      text: "Appelez le 06 71 73 82 76 — réponse les jours ouvrés.",
+      title: "Devis au téléphone",
+      text: "Appelez le 06 71 73 82 76 — devis en environ 5 minutes. Lun–sam 8 h – 18 h.",
     },
   ],
   species: [
@@ -315,10 +319,14 @@ export const business = {
       q: "Quelle longueur choisir ?",
       a: "25 ou 33 cm pour poêle et insert. 40 cm pour grand foyer. 50 cm pour cheminée ouverte. 1 m pour grande cheminée ou chaudière.",
     },
+    {
+      q: "Comment obtenir un devis ?",
+      a: "Le plus rapide : appelez le 06 71 73 82 76 — devis en environ 5 minutes. Par email (gbbois77commandes@gmail.com), réponse sous 24 h. Nous sommes joignables du lundi au samedi, 8 h – 18 h.",
+    },
   ],
   midCta: {
     title: "Commune, longueur, volume. On s’occupe du reste.",
-    text: "Devis gratuit au 06 71 73 82 76. Livraison depuis Yèbles vers le 77 et l’Île-de-France.",
+    text: "Appelez le 06 71 73 82 76 pour un devis en ~5 minutes. Email : réponse sous 24 h. Ouverts lundi à samedi, 8 h – 18 h.",
   },
   footerNote: "G.B BOIS · SAS · SIREN 942 509 688 · RCS Melun",
 } as const;

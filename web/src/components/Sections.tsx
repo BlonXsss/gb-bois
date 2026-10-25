@@ -690,11 +690,11 @@ export function MidCta() {
               {business.midCta.text}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#contact" className="btn-amber">
-                Demander un devis
+              <a href={business.phoneHref} className="btn-amber">
+                Appeler — devis ~5 min
               </a>
-              <a href={business.phoneHref} className="btn-glass">
-                Appeler
+              <a href={business.emailHref} className="btn-glass">
+                Devis email · 24 h
               </a>
             </div>
           </div>
@@ -716,18 +716,35 @@ export function Contact() {
             <p className="eyebrow">Contact</p>
             <h2 className="display-title">Contactez GB Bois</h2>
             <p className="display-lead">
-              Devis gratuit · Seine-et-Marne & Île-de-France. Longueur et volume
-              repris automatiquement.
+              Pour un devis rapide, appelez-nous. Par email, réponse sous 24 h.
+              Ouverts {business.hours.toLowerCase()}.
             </p>
             <a
               href={business.phoneHref}
-              className="soft-card soft-card-interactive block p-5 sm:p-6"
+              className="soft-card soft-card-interactive block border border-amber/25 p-5 sm:p-6"
             >
-              <p className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-                Téléphone
+              <p className="text-[0.7rem] uppercase tracking-[0.16em] text-amber">
+                Téléphone — le plus rapide
               </p>
               <p className="mt-2 font-display text-xl tracking-tightest">
                 {business.phone}
+              </p>
+              <p className="mt-2 text-sm text-muted">
+                {business.phoneDevisNote}
+              </p>
+            </a>
+            <a
+              href={business.emailHref}
+              className="soft-card soft-card-interactive block p-5 sm:p-6"
+            >
+              <p className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">
+                Email
+              </p>
+              <p className="mt-2 break-all font-display text-lg tracking-tightest">
+                {business.email}
+              </p>
+              <p className="mt-2 text-sm text-muted">
+                {business.emailDevisNote}
               </p>
             </a>
             <a
@@ -743,17 +760,17 @@ export function Contact() {
                 Écrire sur WhatsApp
               </p>
             </a>
-            <a
-              href={business.emailHref}
-              className="soft-card soft-card-interactive block p-5 sm:p-6"
-            >
+            <div className="soft-card p-5 sm:p-6">
               <p className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">
-                Email
+                Disponibilité
               </p>
-              <p className="mt-2 break-all font-display text-lg tracking-tightest">
-                {business.email}
+              <p className="mt-2 font-display text-lg tracking-tightest">
+                {business.hours}
               </p>
-            </a>
+              <p className="mt-2 text-sm text-muted">
+                Appels et devis acceptés pendant ces horaires.
+              </p>
+            </div>
             <div className="soft-card p-5 sm:p-6">
               <p className="text-[0.7rem] uppercase tracking-[0.16em] text-muted">
                 Votre sélection

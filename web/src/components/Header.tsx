@@ -123,7 +123,7 @@ export function Header() {
               href={business.phoneHref}
               className="btn-amber !min-h-[44px] !px-4 !py-2.5 hidden sm:inline-flex"
             >
-              Appeler
+              Appeler · devis
             </a>
             <button
               type="button"
