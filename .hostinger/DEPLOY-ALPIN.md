@@ -1,14 +1,24 @@
-# Alpine demo → /alpin only (keep main GB Bois site)
+# GB Bois Alpine → replace live site root
 
-**Live:** https://gbbois.fr/alpin/
+**Preview first**, then deploy to https://gbbois.fr/ (document root).
 
-Upload ONLY `deploy-alpin/alpin/` into document root as `alpin/`.
-Do not use full-root `hosting_deploy` (that overwrites the live site).
+This build is a static export of `web/` (`output: "export"`). Serve `web/out/` locally to review before any Hostinger write.
 
-`web/next.config.ts` sets `basePath` / `assetPrefix` to `/alpin` so assets resolve under the subdirectory.
+## Preview (local / tunnel)
 
-After auth (`HOSTINGER_API_TOKEN` or OAuth):
-1. `hosting_websites_list` → `gbbois.fr` (`u936672062`)
-2. `POST /api/hosting/v1/files/upload-urls` with `{ username, domain }`
-3. TUS POST+PATCH each file to `{url}/alpin/<rel>?override=true` (`X-Auth`, `X-Auth-Rest`; fix Location with `/rest` prefix if needed)
-4. Verify https://gbbois.fr/alpin/ — main site root must stay unchanged
+```bash
+cd web && npm run build
+npx --yes serve out -l 4173
+# optional: cloudflared tunnel --url http://127.0.0.1:4173
+```
+
+## Deploy (destructive — overwrites live homepage)
+
+Only after explicit approval:
+
+1. Auth with `HOSTINGER_API_TOKEN`
+2. Upload every file from `web/out/` into `public_html/` (root), not `alpin/`
+3. Or use `hosting_deploy` with domain `gbbois.fr` and path to the static export — **this replaces the whole site**
+4. Verify https://gbbois.fr/ and that assets (`/_next/`, `/img/`) return 200
+
+Previous subdirectory preview (optional keep): https://gbbois.fr/alpin/
