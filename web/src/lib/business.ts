@@ -99,7 +99,6 @@ export const business = {
       { src: "/img/galerie-9.jpg", caption: "Bois prêt à brûler" },
       { src: "/img/galerie-10.jpg", caption: "Saison de chauffe" },
       { src: "/img/galerie-11.jpg", caption: "Livraison Île-de-France" },
-      { src: "/img/sac.png", caption: "Filets de bois d’allumage" },
     ],
   },
   lengths: [
