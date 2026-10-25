@@ -9,14 +9,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        page: "#eef1f2",
-        ink: "#14202a",
-        muted: "#4f5d68",
+        page: "#e8ecef",
+        ink: "#121c24",
+        muted: "#55636e",
         amber: {
-          DEFAULT: "#c98a3c",
-          light: "#e4b06e",
+          DEFAULT: "#c48438",
+          light: "#e2ae6a",
         },
-        deep: "#0f1a22",
+        deep: "#0c161e",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
@@ -26,13 +26,14 @@ export default {
         "2rem": "2rem",
       },
       boxShadow: {
-        soft: "0 10px 40px -18px rgba(20, 32, 42, 0.18)",
-        lift: "0 16px 40px -16px rgba(20, 32, 42, 0.22)",
-        amber: "0 12px 28px -10px rgba(201, 138, 60, 0.55)",
+        soft: "0 12px 36px -20px rgba(18, 28, 36, 0.22)",
+        lift: "0 18px 42px -18px rgba(18, 28, 36, 0.26)",
+        amber: "0 14px 30px -12px rgba(196, 132, 56, 0.48)",
       },
       letterSpacing: {
-        tightest: "-0.03em",
+        tightest: "-0.035em",
       },
+
     },
   },
   plugins: [],

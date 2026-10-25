@@ -21,18 +21,18 @@ export function QtyControl({
   }, [qty]);
 
   return (
-    <div className={`inline-flex items-center gap-3 ${className}`}>
+    <div className={`inline-flex items-center gap-2.5 sm:gap-3 ${className}`}>
       <button
         type="button"
         onClick={dec}
         disabled={qty <= business.minOrderSteres}
         aria-label="Diminuer la quantité"
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-page text-lg font-medium text-ink transition hover:bg-white disabled:opacity-40"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-page text-lg font-medium text-ink transition hover:bg-white disabled:opacity-40"
       >
         −
       </button>
       <span
-        className={`min-w-[3.5rem] text-center font-display text-2xl font-medium tracking-tightest tabular-nums ${pop ? "qty-pop" : ""}`}
+        className={`min-w-[3.75rem] text-center font-display text-2xl font-medium tracking-tightest tabular-nums ${pop ? "qty-pop" : ""}`}
         aria-live="polite"
       >
         {qty}
@@ -47,7 +47,7 @@ export function QtyControl({
         onClick={inc}
         disabled={qty >= business.maxOrderSteres}
         aria-label="Augmenter la quantité"
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-page text-lg font-medium text-ink transition hover:bg-white disabled:opacity-40"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-page text-lg font-medium text-ink transition hover:bg-white disabled:opacity-40"
       >
         +
       </button>

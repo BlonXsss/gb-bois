@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="h-full antialiased">
       <body
-        className={`${inter.variable} ${grotesk.variable} font-sans min-h-full pb-24 sm:pb-0`}
+        className={`${inter.variable} ${grotesk.variable} font-sans min-h-full pb-[calc(5.75rem+env(safe-area-inset-bottom))] sm:pb-0`}
       >
         <OrderProvider>
           <ScrollProgress />
