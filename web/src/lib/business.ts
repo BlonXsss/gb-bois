@@ -78,7 +78,7 @@ export const business = {
   unitLabelPlural: "stères",
   priceUnitSuffix: "/ stère",
   photos: {
-    hero: "/img/hero-wood-supplier.jpg",
+    hero: "/img/forest-5176376_1280.jpg",
     about: "/img/about-wood.jpg",
     midCta: "/img/cta-forest.jpg",
     kindling: "/img/sac.png",
@@ -282,7 +282,7 @@ export const business = {
     stats: [
       { value: "7", label: "départements" },
       { value: "5", label: "longueurs" },
-      { value: "4,6", label: "note clients" },
+      { value: "4,8", label: "23 avis" },
       { value: "−3€", label: "si < 30 km" },
     ],
     paragraphs: [

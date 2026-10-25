@@ -14,10 +14,10 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-function LogoMark({ size = 68 }: { size?: number }) {
+function LogoMark({ size = 64 }: { size?: number }) {
   return (
     <span
-      className="relative shrink-0 overflow-hidden rounded-full bg-white ring-1 ring-ink/10"
+      className="relative shrink-0 overflow-hidden rounded-full bg-white ring-1 ring-ink/8"
       style={{ width: size, height: size }}
     >
       <Image
@@ -35,26 +35,29 @@ function LogoMark({ size = 68 }: { size?: number }) {
 export function TopBar() {
   return (
     <div className="bg-deep text-white/90">
-      <div className="section-pad site-width flex flex-wrap items-center justify-between gap-2 py-2 text-xs sm:text-sm">
-        <div className="flex flex-wrap items-center gap-3">
-          <a href={business.phoneHref} className="font-medium hover:text-white">
+      <div className="section-pad site-width flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 py-2.5 text-xs sm:text-sm">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <a
+            href={business.phoneHref}
+            className="min-h-[44px] inline-flex items-center font-medium tracking-wide hover:text-white"
+          >
             {business.phone}
           </a>
-          <span className="hidden text-white/40 sm:inline" aria-hidden>
+          <span className="hidden text-white/35 sm:inline" aria-hidden>
             ·
           </span>
           <a
             href={business.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden text-white/75 hover:text-white sm:inline"
+            className="hidden min-h-[44px] items-center text-white/72 hover:text-white sm:inline-flex"
           >
             WhatsApp
           </a>
         </div>
-        <p className="truncate text-right text-white/70">
+        <p className="max-w-[58%] truncate text-right text-white/65 sm:max-w-none">
           Dépôt Yèbles · Livraison{" "}
-          <span className="text-white/90">{business.deliveryLine}</span>
+          <span className="text-white/88">{business.deliveryLine}</span>
         </p>
       </div>
     </div>
@@ -81,15 +84,20 @@ export function Header() {
 
   return (
     <>
-      <div className="section-pad site-width sticky top-5 z-50 mt-1 sm:mt-2 sm:top-6">
+      <div className="section-pad site-width sticky top-[max(1rem,env(safe-area-inset-top))] z-50 mt-1 sm:mt-2 sm:top-6">
         <header
-          className={`flex items-center justify-between gap-3 rounded-full px-3 py-2 shadow-soft transition sm:px-4 ${
-            scrolled ? "glass" : "bg-white/90"
+          className={`header-pill flex items-center justify-between gap-3 rounded-full px-2.5 py-1.5 shadow-soft sm:px-4 sm:py-2 ${
+            scrolled
+              ? "glass border border-white/60"
+              : "border border-white/40 bg-white/88 backdrop-blur-md"
           }`}
         >
-          <a href="#accueil" className="flex items-center gap-2.5 pl-0.5">
+          <a
+            href="#accueil"
+            className="flex min-h-[48px] items-center gap-2.5 pl-0.5"
+          >
             <LogoMark />
-            <span className="font-display text-sm font-medium tracking-tightest text-ink sm:text-base">
+            <span className="font-display text-[0.95rem] font-medium tracking-tightest text-ink sm:text-base">
               {business.brand}
               <span className="ml-1 text-amber">77</span>
             </span>
@@ -103,7 +111,7 @@ export function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                className="rounded-full px-3 py-2 text-sm font-medium text-muted transition hover:bg-page hover:text-ink"
+                className="rounded-full px-3.5 py-2.5 text-sm font-medium text-muted transition hover:bg-page/80 hover:text-ink"
               >
                 {l.label}
               </a>
@@ -113,13 +121,13 @@ export function Header() {
           <div className="flex items-center gap-2">
             <a
               href={business.phoneHref}
-              className="btn-amber hidden sm:inline-flex"
+              className="btn-amber !min-h-[44px] !px-4 !py-2.5 hidden sm:inline-flex"
             >
               Appeler
             </a>
             <button
               type="button"
-              className="btn-slate xl:hidden"
+              className="btn-slate !min-h-[44px] !px-4 !py-2.5 xl:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               onClick={() => setOpen(true)}
@@ -137,34 +145,41 @@ export function Header() {
           role="dialog"
           aria-modal="true"
           aria-label="Navigation"
+          style={{ paddingTop: "env(safe-area-inset-top)" }}
         >
           <div className="flex items-center justify-between px-5 py-4">
-            <span className="flex items-center gap-2 font-display text-lg tracking-tightest">
-              <LogoMark size={60} />
+            <span className="flex items-center gap-2.5 font-display text-lg tracking-tightest">
+              <LogoMark size={56} />
               {business.brand}
+              <span className="text-amber-light">77</span>
             </span>
             <button
               type="button"
-              className="rounded-full border border-white/20 px-4 py-2 text-sm"
+              className="min-h-[48px] rounded-full border border-white/20 px-5 py-2.5 text-sm"
               onClick={() => setOpen(false)}
             >
               Fermer
             </button>
           </div>
-          <nav className="flex flex-1 flex-col justify-center gap-2 px-6">
+          <nav className="flex flex-1 flex-col justify-center gap-1 px-6">
             {links.map((l, i) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="flex items-baseline gap-4 border-b border-white/10 py-4 font-display text-3xl tracking-tightest"
+                className="flex min-h-[56px] items-baseline gap-4 border-b border-white/10 py-4 font-display text-[1.85rem] tracking-tightest sm:text-3xl"
               >
-                <span className="text-sm text-white/40">0{i + 1}</span>
+                <span className="w-7 text-sm text-white/35">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 {l.label}
               </a>
             ))}
           </nav>
-          <div className="grid gap-3 p-6">
+          <div
+            className="grid gap-3 p-6 safe-bottom"
+            style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
+          >
             <a href={business.phoneHref} className="btn-amber w-full">
               Appeler · {business.phone}
             </a>
