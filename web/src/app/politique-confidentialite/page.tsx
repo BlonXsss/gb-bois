@@ -100,6 +100,11 @@ export default function PolitiqueConfidentialitePage() {
             ]}
           />
           <p>
+            Ces informations sont transmises via le service de formulaire en
+            ligne Web3Forms afin d&apos;acheminer votre demande à{" "}
+            {business.legalName}.
+          </p>
+          <p>
             Vous pouvez également nous contacter directement par téléphone, e-mail
             ou WhatsApp&nbsp;; dans ce cas, seules les données que vous nous
             communiquez volontairement sont traitées pour répondre à votre
@@ -139,8 +144,9 @@ export default function PolitiqueConfidentialitePage() {
               </>,
               <>
                 <strong className="text-ink">Intérêt légitime</strong>
-                &nbsp;: gestion du site, prévention des abus, suivi de la
-                relation commerciale liée à une demande.
+                &nbsp;: gestion du site, prévention des abus (contrôle
+                anti-robot du formulaire), suivi de la relation commerciale
+                liée à une demande.
               </>,
               <>
                 <strong className="text-ink">Obligation légale</strong>
@@ -202,6 +208,7 @@ export default function PolitiqueConfidentialitePage() {
           <LegalList
             items={[
               "le personnel habilité de G.B BOIS ;",
+              "le prestataire de formulaire Web3Forms, pour l’acheminement des messages ;",
               "Google, pour les services Maps et polices éventuellement présents sur le site ;",
               "les autorités compétentes, uniquement si la loi l’exige.",
             ]}

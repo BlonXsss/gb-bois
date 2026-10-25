@@ -2,8 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { business } from "@/lib/business";
+import {
+  CONTACT_FORM_FROM_NAME,
+  CONTACT_FORM_SUBJECT,
+  WEB3FORMS_ENDPOINT,
+  getWeb3FormsAccessKey,
+} from "@/lib/contact-form";
 import { useOrder } from "@/lib/order-context";
 import { QtyControl } from "./QtyControl";
 import { Reveal } from "./Reveal";
@@ -922,7 +929,98 @@ export function MidCta() {
 
 export function Contact() {
   const { length, qty, total, formatEuro, nearDepot } = useOrder();
+  const router = useRouter();
   const [status, setStatus] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const accessKey = getWeb3FormsAccessKey();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("");
+
+    if (!accessKey) {
+      setStatus(
+        "Envoi indisponible pour le moment. Appelez-nous au " +
+          business.phone +
+          " ou écrivez à " +
+          business.email +
+          "."
+      );
+      return;
+    }
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Honeypot — if filled, pretend success without sending.
+    if (String(formData.get("botcheck") || "").trim()) {
+      router.push("/merci/");
+      return;
+    }
+
+    formData.set("access_key", accessKey);
+    formData.set("subject", CONTACT_FORM_SUBJECT);
+    formData.set("from_name", CONTACT_FORM_FROM_NAME);
+    formData.set("replyto", String(formData.get("email") || business.email));
+
+    const nom = String(formData.get("nom") || "").trim();
+    const prenom = String(formData.get("prenom") || "").trim();
+    const commune = String(formData.get("commune") || "").trim();
+    const tel = String(formData.get("tel") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const lengthLabel = String(formData.get("length") || length.label);
+    const qtyValue = String(formData.get("qty") || qty);
+
+    formData.set(
+      "message",
+      [
+        message,
+        "",
+        `— Sélection site —`,
+        `Longueur : ${lengthLabel}`,
+        `Volume : ${qtyValue} ${business.unitLabelPlural}`,
+        `Commune : ${commune}`,
+        `Tél : ${tel}`,
+        `Email : ${email}`,
+        `Nom : ${prenom} ${nom}`.trim(),
+        nearDepot ? `Proximité Yèbles : oui (−${business.nearDiscountEuros} €)` : null,
+      ]
+        .filter(Boolean)
+        .join("\n")
+    );
+
+    setSubmitting(true);
+    try {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        body: formData,
+      });
+      const json = (await response.json().catch(() => null)) as {
+        success?: boolean;
+        message?: string;
+      } | null;
+
+      if (response.ok && json?.success !== false) {
+        router.push("/merci/");
+        return;
+      }
+
+      setStatus(
+        "L’envoi a échoué. Réessayez, ou appelez-nous au " +
+          business.phone +
+          "."
+      );
+    } catch {
+      setStatus(
+        "Erreur de connexion. Vérifiez votre réseau, ou appelez le " +
+          business.phone +
+          "."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <section id="contact" className="section-pad site-width section-y">
@@ -1074,12 +1172,8 @@ export function Contact() {
         <Reveal>
           <form
             className="soft-card grid gap-4 p-6 sm:gap-5 sm:p-8"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setStatus(
-                "Merci — votre demande est enregistrée (démo, non envoyée)."
-              );
-            }}
+            onSubmit={handleSubmit}
+            noValidate={false}
           >
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="text-sm">
@@ -1087,6 +1181,7 @@ export function Contact() {
                 <input
                   required
                   name="nom"
+                  autoComplete="family-name"
                   className="mt-2 w-full rounded-2xl border border-ink/10 bg-page px-4 py-3.5 outline-none focus:ring-2 focus:ring-amber"
                 />
               </label>
@@ -1095,6 +1190,7 @@ export function Contact() {
                 <input
                   required
                   name="prenom"
+                  autoComplete="given-name"
                   className="mt-2 w-full rounded-2xl border border-ink/10 bg-page px-4 py-3.5 outline-none focus:ring-2 focus:ring-amber"
                 />
               </label>
@@ -1104,6 +1200,7 @@ export function Contact() {
               <input
                 required
                 name="commune"
+                autoComplete="address-level2"
                 className="mt-2 w-full rounded-2xl border border-ink/10 bg-page px-4 py-3.5 outline-none focus:ring-2 focus:ring-amber"
               />
             </label>
@@ -1113,6 +1210,7 @@ export function Contact() {
                 required
                 type="tel"
                 name="tel"
+                autoComplete="tel"
                 className="mt-2 w-full rounded-2xl border border-ink/10 bg-page px-4 py-3.5 outline-none focus:ring-2 focus:ring-amber"
               />
             </label>
@@ -1122,6 +1220,7 @@ export function Contact() {
                 required
                 type="email"
                 name="email"
+                autoComplete="email"
                 className="mt-2 w-full rounded-2xl border border-ink/10 bg-page px-4 py-3.5 outline-none focus:ring-2 focus:ring-amber"
               />
             </label>
@@ -1136,11 +1235,26 @@ export function Contact() {
             </label>
             <input type="hidden" name="length" value={length.label} />
             <input type="hidden" name="qty" value={qty} />
-            <button type="submit" className="btn-amber mt-2 w-full sm:w-auto">
-              Envoyer la demande · {formatEuro(total)}
+            {/* Honeypot — leave empty */}
+            <input
+              type="checkbox"
+              name="botcheck"
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden
+            />
+            <button
+              type="submit"
+              className="btn-amber mt-2 w-full sm:w-auto disabled:cursor-wait disabled:opacity-70"
+              disabled={submitting}
+            >
+              {submitting
+                ? "Envoi en cours…"
+                : `Envoyer la demande · ${formatEuro(total)}`}
             </button>
             {status ? (
-              <p className="text-sm text-green-700" role="status">
+              <p className="text-sm text-red-700" role="alert">
                 {status}
               </p>
             ) : null}
