@@ -1,10 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",
   images: {
-    unoptimized: false,
+    unoptimized: true,
   },
-  // Static export optional later for Hostinger static; keep Node for now
+  trailingSlash: true,
 };
 
 export default nextConfig;
