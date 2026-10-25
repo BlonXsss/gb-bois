@@ -20,5 +20,5 @@ Edit only `web/src/lib/business.ts` — UI reads that config.
 
 ## Notes
 
-- `robots: noindex` for confidential client preview
+- SEO zone landings restored (`/bois-de-chauffage-*-77|78|91…` + Île-de-France) with indexable metadata, sitemap and JSON-LD
 - Hostinger deploy pending MCP OAuth / API token

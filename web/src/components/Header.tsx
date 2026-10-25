@@ -1,17 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { business } from "@/lib/business";
 
 const links = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#tarifs", label: "Tarifs" },
-  { href: "#services", label: "Services" },
-  { href: "#zones", label: "Zones" },
-  { href: "#galerie", label: "Galerie" },
-  { href: "#apropos", label: "À propos" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Accueil" },
+  { href: "/#tarifs", label: "Tarifs" },
+  { href: "/#services", label: "Services" },
+  { href: "/#zones", label: "Zones" },
+  { href: "/bois-de-chauffage-ile-de-france/", label: "Île-de-France" },
+  { href: "/#galerie", label: "Galerie" },
+  { href: "/#apropos", label: "À propos" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 function LogoMark({ size = 64 }: { size?: number }) {
@@ -92,8 +94,8 @@ export function Header() {
               : "border border-white/40 bg-white/88 backdrop-blur-md"
           }`}
         >
-          <a
-            href="#accueil"
+          <Link
+            href="/"
             className="flex min-h-[48px] items-center gap-2.5 pl-0.5"
           >
             <LogoMark />
@@ -101,20 +103,20 @@ export function Header() {
               {business.brand}
               <span className="ml-1 text-amber">77</span>
             </span>
-          </a>
+          </Link>
 
           <nav
             className="hidden items-center gap-0.5 xl:flex"
             aria-label="Principal"
           >
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 className="rounded-full px-3.5 py-2.5 text-sm font-medium text-muted transition hover:bg-page/80 hover:text-ink"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -163,7 +165,7 @@ export function Header() {
           </div>
           <nav className="flex flex-1 flex-col justify-center gap-1 px-6">
             {links.map((l, i) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
@@ -173,7 +175,7 @@ export function Header() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <div

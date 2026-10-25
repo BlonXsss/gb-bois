@@ -4,6 +4,7 @@ import "./globals.css";
 import { business } from "@/lib/business";
 import { OrderProvider } from "@/lib/order-context";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { absoluteUrl, homeSeo } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,9 +20,61 @@ const grotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: `${business.brand} 77 — Bois de chauffage Seine-et-Marne & IDF`,
-  description: business.heroSubtitle,
-  robots: { index: false, follow: false },
+  metadataBase: new URL(business.website),
+  title: {
+    default: homeSeo.title,
+    template: `%s | ${business.brand}`,
+  },
+  description: homeSeo.description,
+  applicationName: business.brand,
+  authors: [{ name: business.brand }],
+  creator: business.brand,
+  publisher: business.legalName,
+  keywords: [
+    "bois de chauffage 77",
+    "bois de chauffage Seine-et-Marne",
+    "bois de chauffage Île-de-France",
+    "livraison bois Yèbles",
+    "GB Bois",
+    "stère bois pas cher",
+  ],
+  alternates: {
+    canonical: homeSeo.canonical,
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: homeSeo.canonical,
+    siteName: business.brand,
+    title: homeSeo.title,
+    description: homeSeo.description,
+    images: [
+      {
+        url: absoluteUrl(business.photos.hero),
+        width: 1600,
+        height: 900,
+        alt: "GB Bois — bois de chauffage sec",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeSeo.title,
+    description: homeSeo.description,
+    images: [absoluteUrl(business.photos.hero)],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "business",
 };
 
 export default function RootLayout({

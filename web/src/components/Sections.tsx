@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { business } from "@/lib/business";
 import { useOrder } from "@/lib/order-context";
@@ -441,10 +442,28 @@ export function Zones() {
                 </div>
               </div>
 
-              <p className="mt-10 border-t border-ink/8 pt-6 text-sm leading-relaxed text-muted">
-                {business.deliveryLine} · livraison depuis{" "}
-                <span className="text-ink">{business.depot.address}</span>
-              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-3 border-t border-ink/8 pt-6">
+                <Link
+                  href={
+                    zone.code === "77"
+                      ? "/bois-de-chauffage-pas-cher-77/"
+                      : `/bois-de-chauffage-${zone.code}/`
+                  }
+                  className="btn-amber !min-h-[44px] !px-5 !py-2.5 text-sm"
+                >
+                  Bois de chauffage {zone.code}
+                </Link>
+                <Link
+                  href="/bois-de-chauffage-ile-de-france/"
+                  className="inline-flex min-h-[44px] items-center text-sm font-medium text-ink underline decoration-ink/20 underline-offset-4 hover:decoration-amber"
+                >
+                  Île-de-France
+                </Link>
+                <p className="w-full text-sm leading-relaxed text-muted sm:w-auto sm:ml-auto">
+                  {business.deliveryLine} · depuis{" "}
+                  <span className="text-ink">{business.depot.address}</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1146,12 +1165,12 @@ export function StickyOrderBar() {
           </p>
           <p className="text-xs text-muted">{formatEuro(total)}</p>
         </div>
-        <a
-          href="#contact"
+        <Link
+          href="/#contact"
           className="btn-amber shrink-0 !min-h-[44px] !px-4 !py-2.5"
         >
           Commander
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -1180,29 +1199,35 @@ export function Footer() {
           </p>
           <ul className="mt-4 space-y-2.5 text-sm text-white/78">
             <li>
-              <a href="#tarifs" className="inline-flex min-h-[40px] items-center hover:text-white">
+              <Link href="/#tarifs" className="inline-flex min-h-[40px] items-center hover:text-white">
                 Tarifs
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#services" className="inline-flex min-h-[40px] items-center hover:text-white">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#zones" className="inline-flex min-h-[40px] items-center hover:text-white">
+              <Link href="/#zones" className="inline-flex min-h-[40px] items-center hover:text-white">
                 Zones
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#adresses" className="inline-flex min-h-[40px] items-center hover:text-white">
-                Adresses
-              </a>
+              <Link
+                href="/bois-de-chauffage-ile-de-france/"
+                className="inline-flex min-h-[40px] items-center hover:text-white"
+              >
+                Île-de-France
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="inline-flex min-h-[40px] items-center hover:text-white">
+              <Link
+                href="/bois-de-chauffage-pas-cher-77/"
+                className="inline-flex min-h-[40px] items-center hover:text-white"
+              >
+                Seine-et-Marne (77)
+              </Link>
+            </li>
+            <li>
+              <Link href="/#contact" className="inline-flex min-h-[40px] items-center hover:text-white">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
