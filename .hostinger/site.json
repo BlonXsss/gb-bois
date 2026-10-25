@@ -2,8 +2,7 @@
   "domain": "gbbois.fr",
   "username": "u936672062",
   "orderId": 1007120659,
-  "demoPath": "",
   "demoUrl": "https://gbbois.fr/",
-  "note": "Alpine build targets document root; confirm before hosting_deploy / TUS root upload.",
-  "previewNote": "Root replace pending approval after preview"
+  "serverBackup": "_backup_old_20261025",
+  "note": "Alpine static export is the live document root. Old site backed up on server."
 }
