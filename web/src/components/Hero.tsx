@@ -12,7 +12,7 @@ export function Hero() {
             alt=""
             fill
             priority
-            className="object-cover object-[center_35%] kenburns"
+            className="object-cover object-[center_22%] sm:object-[center_28%] kenburns"
             sizes="(max-width: 1280px) 100vw, 1536px"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-deep via-deep/55 to-deep/30" />
