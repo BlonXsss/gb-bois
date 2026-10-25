@@ -736,17 +736,16 @@ export function Extras() {
     <section className="section-pad site-width section-y">
       <Reveal>
         <div className="flex max-w-3xl flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-soft sm:flex-row">
-          <div className="relative mx-auto mt-4 h-[132px] w-[132px] shrink-0 sm:m-0 sm:h-auto sm:w-[150px] sm:min-h-[150px] sm:self-stretch lg:w-[168px]">
-            <div className="absolute inset-0 bg-page/80 sm:rounded-none" />
+          <div className="relative h-[128px] w-full shrink-0 bg-page/80 sm:h-auto sm:w-[150px] sm:min-h-full sm:self-stretch lg:w-[168px]">
             <Image
               src={item.image}
               alt={item.title}
               fill
-              className="object-contain p-2 drop-shadow-sm sm:p-3"
-              sizes="168px"
+              className="object-contain p-2.5 drop-shadow-sm sm:p-3"
+              sizes="(max-width: 640px) 100vw, 168px"
             />
           </div>
-          <div className="flex min-w-0 flex-1 flex-col gap-2.5 px-4 pb-4 pt-3 sm:px-5 sm:py-4">
+          <div className="flex min-w-0 flex-1 flex-col gap-2 px-4 py-3.5 sm:gap-2.5 sm:px-5 sm:py-4">
             <div className="min-w-0">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
                 <p className="eyebrow !mb-0">Accessoire</p>
@@ -757,7 +756,7 @@ export function Extras() {
                   </span>
                 </p>
               </div>
-              <h2 className="mt-1 font-display text-lg font-medium tracking-tightest sm:text-xl">
+              <h2 className="mt-0.5 font-display text-lg font-medium tracking-tightest sm:text-xl">
                 {item.title}
               </h2>
               <p className="mt-1 text-sm leading-snug text-muted">
