@@ -23,20 +23,20 @@ export function Reassurance() {
     <path key="4" d="M5 12h14M12 5v14" stroke="currentColor" strokeWidth="1.6" />,
   ];
   return (
-    <section className="section-pad site-width py-12">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="section-pad site-width section-y">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         {business.reassurances.map((r, i) => (
-          <Reveal key={r.title}>
-            <article className="soft-card h-full p-6">
+          <Reveal key={r.title} className={`reveal-delay-${(i % 3) + 1}`}>
+            <article className="h-full rounded-[1.75rem] bg-white/80 p-6 sm:p-7">
               <IconBox>
                 <svg width="20" height="20" viewBox="0 0 24 24">
                   {icons[i]}
                 </svg>
               </IconBox>
-              <h3 className="font-display text-lg font-medium tracking-tightest">
+              <h3 className="font-display text-lg font-medium tracking-tightest sm:text-xl">
                 {r.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{r.text}</p>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted">{r.text}</p>
             </article>
           </Reveal>
         ))}
@@ -60,16 +60,14 @@ export function Pricing() {
   } = useOrder();
 
   return (
-    <section id="tarifs" className="section-pad site-width py-8 sm:py-14">
+    <section id="tarifs" className="section-pad site-width section-y">
       <Reveal>
-        <div className="mx-auto mb-8 max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.16em] text-amber">
-            Tarifs
-          </p>
-          <h2 className="mt-3 font-display text-3xl font-medium tracking-tightest text-ink sm:text-4xl">
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <p className="eyebrow">Tarifs</p>
+          <h2 className="display-title mt-3">
             Cinq longueurs. Prix au stère, livré.
           </h2>
-          <p className="mt-3 text-muted">
+          <p className="display-lead mt-4">
             {business.minOrderNote} Remise −{business.nearDiscountEuros} €/stère
             si votre adresse est à moins de {business.nearDiscountKm} km du dépôt
             de Yèbles (sauf bois 1 m).
@@ -77,9 +75,9 @@ export function Pricing() {
         </div>
       </Reveal>
 
-      <div className="mb-8 flex justify-center">
+      <div className="mb-9 flex justify-center">
         <div
-          className="inline-grid grid-cols-2 gap-1 rounded-full bg-white p-1 shadow-soft"
+          className="inline-grid w-full max-w-md grid-cols-2 gap-1 rounded-[1.25rem] bg-white/90 p-1 shadow-soft sm:w-auto sm:max-w-none"
           role="group"
           aria-label="Tarif de proximité"
         >
@@ -87,7 +85,7 @@ export function Pricing() {
             type="button"
             aria-pressed={!nearDepot}
             onClick={() => setNearDepot(false)}
-            className={`rounded-full px-5 py-2.5 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber ${
+            className={`min-h-[48px] rounded-[1.05rem] px-4 py-2.5 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber sm:px-5 ${
               !nearDepot ? "bg-ink text-white" : "text-muted hover:text-ink"
             }`}
           >
@@ -97,16 +95,16 @@ export function Pricing() {
             type="button"
             aria-pressed={nearDepot}
             onClick={() => setNearDepot(true)}
-            className={`rounded-full px-5 py-2.5 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber ${
+            className={`min-h-[48px] rounded-[1.05rem] px-4 py-2.5 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber sm:px-5 ${
               nearDepot ? "bg-ink text-white" : "text-muted hover:text-ink"
             }`}
           >
-            Proximité Yèbles (−{business.nearDiscountEuros} €)
+            Proximité (−{business.nearDiscountEuros} €)
           </button>
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-5">
         {business.lengths.map((opt) => {
           const active = opt.id === lengthId;
           const price = nearDepot ? opt.priceNearPerStere : opt.pricePerStere;
@@ -114,20 +112,22 @@ export function Pricing() {
           return (
             <Reveal key={opt.id}>
               <article
-                className={`soft-card relative flex h-full flex-col p-5 ${
-                  opt.popular ? "ring-2 ring-amber" : ""
-                }`}
+                className={`relative flex h-full flex-col rounded-[1.75rem] bg-white p-5 transition duration-300 sm:p-6 ${
+                  active ? "shadow-lift ring-1 ring-ink/10" : "shadow-soft"
+                } ${opt.popular && !active ? "ring-1 ring-amber/55" : ""}`}
               >
                 {opt.popular ? (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-amber-light to-amber px-3 py-1 text-xs font-medium text-ink shadow-amber">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-amber-light to-amber px-3 py-1 text-[11px] font-medium tracking-wide text-ink">
                     Le plus choisi
                   </span>
                 ) : null}
                 <h3 className="font-display text-xl font-medium tracking-tightest">
                   {opt.label}
                 </h3>
-                <p className="mt-2 flex-1 text-sm text-muted">{opt.useCase}</p>
-                <p className="mt-4 font-display text-2xl font-medium tracking-tightest">
+                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-muted">
+                  {opt.useCase}
+                </p>
+                <p className="mt-5 font-display text-[1.65rem] font-medium tracking-tightest">
                   {formatEuro(price)}
                   <span className="ml-1 text-sm font-sans font-normal text-muted">
                     {business.priceUnitSuffix}
@@ -149,7 +149,7 @@ export function Pricing() {
                       setLengthId(opt.id);
                       setQty(qty);
                     }}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber ${
+                    className={`min-h-[44px] rounded-full px-4 py-2.5 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber ${
                       active
                         ? "bg-ink text-white"
                         : "bg-page text-ink hover:bg-ink/5"
@@ -161,7 +161,7 @@ export function Pricing() {
                 </div>
 
                 {active ? (
-                  <div className="mt-4 border-t border-ink/5 pt-4">
+                  <div className="mt-5 border-t border-ink/5 pt-4">
                     <div className="flex items-baseline justify-between">
                       <span className="text-sm text-muted">Total</span>
                       <span className="font-display text-xl tracking-tightest">
