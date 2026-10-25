@@ -202,19 +202,17 @@ export function ZonePageView({ zone }: { zone: SeoZonePage }) {
       ) : (
         <section className="section-pad site-width pb-8 sm:pb-10">
           <Reveal>
-            <p className="eyebrow">Communes</p>
+            <p className="eyebrow">Communes · {zone.towns.length}</p>
             <h2 className="display-title mt-3">
-              Villes livrées en {zone.name}
+              Toutes les communes livrées en {zone.name} ({zone.code})
             </h2>
             <p className="display-lead mt-2 max-w-2xl">
-              Liste d’exemples — confirmez votre commune au devis.
+              Liste complète des {zone.towns.length} communes du département.
+              Confirmez votre adresse au devis — {business.phone}.
             </p>
-            <div className="mt-5 flex flex-wrap gap-1.5 sm:mt-6 sm:gap-2">
+            <div className="mt-5 columns-2 gap-x-4 text-[0.7rem] leading-relaxed text-ink sm:mt-6 sm:columns-3 sm:text-xs md:columns-4 lg:columns-5">
               {zone.towns.map((town) => (
-                <span
-                  key={town}
-                  className="inline-flex min-h-[36px] items-center rounded-full border border-ink/8 bg-white px-3 py-1.5 text-xs font-medium text-ink sm:min-h-[40px] sm:px-4 sm:py-2 sm:text-sm"
-                >
+                <span key={town} className="mb-1 block break-inside-avoid text-muted">
                   {town}
                 </span>
               ))}
