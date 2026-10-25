@@ -335,40 +335,108 @@ export function SpeciesGrid() {
 }
 
 export function Zones() {
+  const [active, setActive] = useState(business.zones[0].code);
+  const zone = business.zones.find((z) => z.code === active) ?? business.zones[0];
+
   return (
     <section id="zones" className="section-pad site-width section-y">
       <Reveal>
-        <div className="rounded-[1.75rem] bg-deep px-5 py-12 text-white sm:rounded-[2rem] sm:px-8 sm:py-16">
-          <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-12">
-            <h2 className="font-display text-[1.85rem] font-medium tracking-tightest sm:text-4xl">
-              Livraison en {business.region}
-            </h2>
-            <p className="mt-4 text-[0.975rem] leading-relaxed text-white/68 sm:text-base">
-              Communes principales à titre d’exemple. Une commune voisine ? On
-              confirme au devis.
-            </p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {business.zones.map((z) => (
-              <article
-                key={z.code}
-                className="rounded-[1.5rem] bg-white/97 p-5 text-ink sm:p-6"
-              >
-                <span className="inline-flex rounded-full bg-ink px-3 py-1 font-display text-sm tracking-tightest text-white">
-                  {z.code}
-                </span>
-                <h3 className="mt-3.5 font-display text-xl font-medium tracking-tightest">
-                  {z.name}
-                </h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {z.towns.map((t) => (
-                    <span key={t} className="chip">
+        <div className="overflow-hidden rounded-[1.75rem] border border-ink/8 bg-white shadow-soft sm:rounded-[2rem]">
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="bg-deep px-5 py-10 text-white sm:px-8 sm:py-12 lg:px-10">
+              <p className="eyebrow !text-amber-light">Zones de livraison</p>
+              <h2 className="mt-3 font-display text-[1.85rem] font-medium tracking-tightest sm:text-4xl">
+                Livraison en {business.region}
+              </h2>
+              <p className="mt-4 max-w-md text-[0.975rem] leading-relaxed text-white/68 sm:text-base">
+                Départ dépôt Yèbles. Choisissez votre département — les communes
+                listées sont des exemples. Une commune voisine ? On confirme au
+                devis.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {business.zones.map((z) => {
+                  const on = z.code === active;
+                  return (
+                    <button
+                      key={z.code}
+                      type="button"
+                      onClick={() => setActive(z.code)}
+                      className={`min-h-[44px] rounded-full px-4 py-2 font-display text-sm tracking-tightest transition ${
+                        on
+                          ? "bg-amber-light text-ink shadow-amber"
+                          : "bg-white/10 text-white/85 hover:bg-white/18"
+                      }`}
+                      aria-pressed={on}
+                    >
+                      {z.code}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl bg-white/8 px-4 py-3.5">
+                  <p className="text-[0.7rem] uppercase tracking-[0.16em] text-white/45">
+                    Remise proximité
+                  </p>
+                  <p className="mt-1 font-display text-lg tracking-tightest text-amber-light">
+                    −{business.nearDiscountEuros}&nbsp;€ / stère
+                  </p>
+                  <p className="mt-1 text-sm text-white/55">
+                    &lt; {business.nearDiscountKm} km de Yèbles
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-white/8 px-4 py-3.5">
+                  <p className="text-[0.7rem] uppercase tracking-[0.16em] text-white/45">
+                    Confirmer
+                  </p>
+                  <a
+                    href={business.phoneHref}
+                    className="mt-1 inline-flex min-h-[40px] items-center font-display text-lg tracking-tightest text-white underline decoration-white/30 underline-offset-4 hover:decoration-white"
+                  >
+                    {business.phone}
+                  </a>
+                  <p className="mt-1 text-sm text-white/55">
+                    Devis zone en ~5 min
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between px-5 py-10 sm:px-8 sm:py-12 lg:px-10">
+              <div>
+                <div className="flex items-baseline gap-3">
+                  <span className="font-display text-5xl font-medium tracking-tightest text-ink sm:text-6xl">
+                    {zone.code}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-2xl font-medium tracking-tightest text-ink">
+                      {zone.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">
+                      {zone.towns.length} communes d’exemple
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-2.5">
+                  {zone.towns.map((t) => (
+                    <span
+                      key={t}
+                      className="inline-flex min-h-[40px] items-center rounded-full border border-ink/8 bg-page px-4 py-2 text-sm font-medium text-ink"
+                    >
                       {t}
                     </span>
                   ))}
                 </div>
-              </article>
-            ))}
+              </div>
+
+              <p className="mt-10 border-t border-ink/8 pt-6 text-sm leading-relaxed text-muted">
+                {business.deliveryLine} · livraison depuis{" "}
+                <span className="text-ink">{business.depot.address}</span>
+              </p>
+            </div>
           </div>
         </div>
       </Reveal>
@@ -380,140 +448,141 @@ export function Gallery() {
   const slides = business.photos.gallery;
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [perView, setPerView] = useState(1);
   const count = slides.length;
+  const maxIndex = Math.max(0, count - perView);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      setPerView(w >= 1024 ? 3 : w >= 640 ? 2 : 1);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    setIndex((i) => Math.min(i, Math.max(0, count - perView)));
+  }, [perView, count]);
 
   const go = useCallback(
     (dir: 1 | -1) => {
-      setIndex((i) => (i + dir + count) % count);
+      setIndex((i) => {
+        const next = i + dir;
+        if (next < 0) return maxIndex;
+        if (next > maxIndex) return 0;
+        return next;
+      });
     },
-    [count]
+    [maxIndex]
   );
 
-  const goTo = useCallback((i: number) => setIndex(i), []);
-
   useEffect(() => {
-    if (paused || count < 2) return;
-    const id = window.setInterval(() => go(1), 4500);
+    if (paused || count <= perView) return;
+    const id = window.setInterval(() => go(1), 4200);
     return () => window.clearInterval(id);
-  }, [paused, count, go]);
+  }, [paused, count, perView, go]);
+
+  const stepPct = 100 / perView;
 
   return (
     <section id="galerie" className="section-pad site-width section-y">
       <Reveal>
-        <div className="mb-8 flex max-w-3xl flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+        <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="eyebrow">Galerie</p>
             <h2 className="display-title mt-3">Le bois, tel qu’il est stocké</h2>
           </div>
-          <p className="display-lead sm:max-w-xs sm:text-right">
-            Défilement automatique · pause au survol
-          </p>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              aria-label="Images précédentes"
+              onClick={() => go(-1)}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-white text-ink shadow-soft transition hover:border-ink/20"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path
+                  d="M15 6l-6 6 6 6"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Images suivantes"
+              onClick={() => go(1)}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-white text-ink shadow-soft transition hover:border-ink/20"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path
+                  d="M9 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </Reveal>
 
       <Reveal>
         <div
-          className="relative overflow-hidden rounded-[1.75rem] bg-deep shadow-lift sm:rounded-[2rem]"
+          className="relative"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
-          onFocusCapture={() => setPaused(true)}
-          onBlurCapture={(e) => {
-            if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-              setPaused(false);
-            }
-          }}
         >
-          <div
-            className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-            style={{ transform: `translateX(-${index * 100}%)` }}
-          >
-            {slides.map((g, i) => (
-              <figure
-                key={g.src}
-                className="relative h-[min(68vw,420px)] w-full shrink-0 sm:h-[480px] lg:h-[540px]"
-                aria-hidden={i !== index}
-              >
-                <Image
-                  src={g.src}
-                  alt={g.caption}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1280px) 100vw, 1536px"
-                  priority={i === 0}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/15 to-transparent" />
-                <figcaption className="absolute inset-x-0 bottom-0 px-5 pb-16 sm:px-8 sm:pb-[4.5rem]">
-                  <span className="font-display text-lg tracking-tightest text-white sm:text-xl">
-                    {g.caption}
-                  </span>
-                  <span className="mt-1 block text-sm text-white/55">
-                    {i + 1} / {count}
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-1 overflow-hidden bg-white/10">
+          <div className="overflow-hidden">
             <div
-              key={`${index}-${paused}`}
-              className={`h-full origin-left bg-amber-light ${
-                paused ? "scale-x-0" : "animate-gallery-progress"
-              }`}
-            />
-          </div>
-
-          <div className="absolute inset-x-0 bottom-4 flex items-center justify-between gap-3 px-4 sm:bottom-5 sm:px-6">
-            <div className="pointer-events-auto flex items-center gap-1.5">
-              {slides.map((g, i) => (
-                <button
+              className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ transform: `translateX(-${index * stepPct}%)` }}
+            >
+              {slides.map((g) => (
+                <figure
                   key={g.src}
-                  type="button"
-                  aria-label={`Voir ${g.caption}`}
-                  aria-current={i === index}
-                  onClick={() => goTo(i)}
-                  className={`h-2.5 rounded-full transition-all ${
-                    i === index
-                      ? "w-7 bg-amber-light"
-                      : "w-2.5 bg-white/40 hover:bg-white/70"
-                  }`}
-                />
+                  className="img-zoom relative shrink-0 overflow-hidden rounded-[1.5rem] bg-deep/5 px-1.5 sm:px-2"
+                  style={{ width: `${stepPct}%` }}
+                >
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.35rem] sm:aspect-[3/4]">
+                    <Image
+                      src={g.src}
+                      alt={g.caption}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-deep/75 via-transparent to-transparent" />
+                    <figcaption className="absolute inset-x-0 bottom-0 px-4 pb-4 pt-12">
+                      <span className="font-display text-base tracking-tightest text-white sm:text-lg">
+                        {g.caption}
+                      </span>
+                    </figcaption>
+                  </div>
+                </figure>
               ))}
             </div>
-            <div className="pointer-events-auto flex gap-2">
+          </div>
+
+          <div className="mt-5 flex items-center justify-center gap-1.5 sm:mt-6">
+            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
               <button
+                key={i}
                 type="button"
-                aria-label="Image précédente"
-                onClick={() => go(-1)}
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition hover:bg-white/25"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-                  <path
-                    d="M15 6l-6 6 6 6"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              <button
-                type="button"
-                aria-label="Image suivante"
-                onClick={() => go(1)}
-                className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition hover:bg-white/25"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-                  <path
-                    d="M9 6l6 6-6 6"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
+                aria-label={`Position ${i + 1}`}
+                aria-current={i === index}
+                onClick={() => setIndex(i)}
+                className={`h-2.5 rounded-full transition-all ${
+                  i === index
+                    ? "w-7 bg-amber"
+                    : "w-2.5 bg-ink/15 hover:bg-ink/30"
+                }`}
+              />
+            ))}
           </div>
         </div>
       </Reveal>
