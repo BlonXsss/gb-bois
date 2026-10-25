@@ -132,6 +132,19 @@ body {
     }
   }
 
+  @keyframes gallery-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .animate-gallery-progress {
+    animation: gallery-progress 4.5s linear forwards;
+  }
+
   .kenburns {
     animation: kenburns 22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     will-change: transform;

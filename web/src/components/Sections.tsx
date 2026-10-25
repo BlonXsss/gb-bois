@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { business } from "@/lib/business";
 import { useOrder } from "@/lib/order-context";
 import { QtyControl } from "./QtyControl";
@@ -377,34 +377,146 @@ export function Zones() {
 }
 
 export function Gallery() {
+  const slides = business.photos.gallery;
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const count = slides.length;
+
+  const go = useCallback(
+    (dir: 1 | -1) => {
+      setIndex((i) => (i + dir + count) % count);
+    },
+    [count]
+  );
+
+  const goTo = useCallback((i: number) => setIndex(i), []);
+
+  useEffect(() => {
+    if (paused || count < 2) return;
+    const id = window.setInterval(() => go(1), 4500);
+    return () => window.clearInterval(id);
+  }, [paused, count, go]);
+
   return (
     <section id="galerie" className="section-pad site-width section-y">
       <Reveal>
-        <div className="mb-8 max-w-2xl sm:mb-10">
-          <p className="eyebrow">Galerie</p>
-          <h2 className="display-title mt-3">Le bois, tel qu’il est stocké</h2>
+        <div className="mb-8 flex max-w-3xl flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+          <div>
+            <p className="eyebrow">Galerie</p>
+            <h2 className="display-title mt-3">Le bois, tel qu’il est stocké</h2>
+          </div>
+          <p className="display-lead sm:max-w-xs sm:text-right">
+            Défilement automatique · pause au survol
+          </p>
         </div>
       </Reveal>
-      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 lg:gap-5">
-        {business.photos.gallery.map((g) => (
-          <Reveal key={g.src} className="mb-4 break-inside-avoid lg:mb-5">
-            <figure className="img-zoom relative overflow-hidden rounded-[1.5rem] bg-deep/5">
-              <Image
-                src={g.src}
-                alt={g.caption}
-                width={800}
-                height={600}
-                className="h-auto w-full object-cover"
-              />
-              <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-deep/70 to-transparent px-4 pb-4 pt-10">
-                <span className="font-display text-sm tracking-tightest text-white">
-                  {g.caption}
-                </span>
-              </figcaption>
-            </figure>
-          </Reveal>
-        ))}
-      </div>
+
+      <Reveal>
+        <div
+          className="relative overflow-hidden rounded-[1.75rem] bg-deep shadow-lift sm:rounded-[2rem]"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+              setPaused(false);
+            }
+          }}
+        >
+          <div
+            className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{ transform: `translateX(-${index * 100}%)` }}
+          >
+            {slides.map((g, i) => (
+              <figure
+                key={g.src}
+                className="relative h-[min(68vw,420px)] w-full shrink-0 sm:h-[480px] lg:h-[540px]"
+                aria-hidden={i !== index}
+              >
+                <Image
+                  src={g.src}
+                  alt={g.caption}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1280px) 100vw, 1536px"
+                  priority={i === 0}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-deep/80 via-deep/15 to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 px-5 pb-16 sm:px-8 sm:pb-[4.5rem]">
+                  <span className="font-display text-lg tracking-tightest text-white sm:text-xl">
+                    {g.caption}
+                  </span>
+                  <span className="mt-1 block text-sm text-white/55">
+                    {i + 1} / {count}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-1 overflow-hidden bg-white/10">
+            <div
+              key={`${index}-${paused}`}
+              className={`h-full origin-left bg-amber-light ${
+                paused ? "scale-x-0" : "animate-gallery-progress"
+              }`}
+            />
+          </div>
+
+          <div className="absolute inset-x-0 bottom-4 flex items-center justify-between gap-3 px-4 sm:bottom-5 sm:px-6">
+            <div className="pointer-events-auto flex items-center gap-1.5">
+              {slides.map((g, i) => (
+                <button
+                  key={g.src}
+                  type="button"
+                  aria-label={`Voir ${g.caption}`}
+                  aria-current={i === index}
+                  onClick={() => goTo(i)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    i === index
+                      ? "w-7 bg-amber-light"
+                      : "w-2.5 bg-white/40 hover:bg-white/70"
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="pointer-events-auto flex gap-2">
+              <button
+                type="button"
+                aria-label="Image précédente"
+                onClick={() => go(-1)}
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition hover:bg-white/25"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path
+                    d="M15 6l-6 6 6 6"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                aria-label="Image suivante"
+                onClick={() => go(1)}
+                className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition hover:bg-white/25"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path
+                    d="M9 6l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
