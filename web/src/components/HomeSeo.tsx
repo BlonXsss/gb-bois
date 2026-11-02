@@ -140,6 +140,9 @@ export function HomeSeo() {
                     Remise −{business.nearDiscountEuros} €/stère à moins de{" "}
                     {business.nearDiscountKm} km de Yèbles (sauf 1 m)
                   </p>
+                  <p className="mt-2 text-sm text-amber-light/90">
+                    {business.deliveryFeeNote}
+                  </p>
                 </div>
                 <ul className="divide-y divide-ink/6">
                   {rates.map((r) => (

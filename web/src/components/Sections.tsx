@@ -80,6 +80,9 @@ export function Pricing() {
             si votre adresse est à moins de {business.nearDiscountKm} km du dépôt
             de Yèbles (sauf bois 1 m).
           </p>
+          <p className="mt-3 text-sm font-medium text-ink/80 sm:text-[0.95rem]">
+            {business.deliveryFeeNote}
+          </p>
         </div>
       </Reveal>
 

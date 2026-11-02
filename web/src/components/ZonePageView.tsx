@@ -115,7 +115,7 @@ export function ZonePageView({ zone }: { zone: SeoZonePage }) {
               <p className="mt-5 border-t border-white/10 pt-4 text-xs leading-relaxed text-white/45">
                 Livraison depuis {business.depot.address}. Remise −
                 {business.nearDiscountEuros}&nbsp;€/stère &lt; {business.nearDiscountKm}{" "}
-                km (sauf 1 m).
+                km (sauf 1 m). {business.deliveryFeeNote}
               </p>
             </aside>
           </Reveal>
@@ -129,7 +129,8 @@ export function ZonePageView({ zone }: { zone: SeoZonePage }) {
           </h2>
           <p className="mt-2 max-w-2xl text-sm text-muted">
             Mêmes prix catalogue partout. Remise proximité −{business.nearDiscountEuros}{" "}
-            €/stère sous {business.nearDiscountKm} km de Yèbles (sauf 1 m).
+            €/stère sous {business.nearDiscountKm} km de Yèbles (sauf 1 m).{" "}
+            {business.deliveryFeeNote}
           </p>
           <div className="mt-5 overflow-hidden rounded-[1.25rem] border border-ink/8 bg-white">
             <div className="grid grid-cols-3 gap-px bg-ink/8 text-center text-xs font-medium uppercase tracking-wider text-muted sm:grid-cols-5 sm:text-[0.7rem]">

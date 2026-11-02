@@ -67,6 +67,10 @@ export const business = {
   deliveryLine: "77 · 78 · 91 · 92 · 93 · 94 · 95",
   nearDiscountKm: 30,
   nearDiscountEuros: 3,
+  /** Frais de livraison applicables à partir de cette distance du dépôt Yèbles */
+  deliveryFeeFromKm: 65,
+  deliveryFeeNote:
+    "Frais de livraison à partir de 65 km de notre dépôt de Yèbles.",
   freeDeliveryFromSteres: 5,
   minOrderSteres: 5,
   minOrderNote:
@@ -311,7 +315,7 @@ export const business = {
     },
     {
       q: "Quel est le prix du bois de chauffage ?",
-      a: "De 75 € à 85 € le stère selon la longueur : 25 cm (85 €), 33 cm (80 €), 40 cm (84 €), 50 cm (75 €) et 1 m (78 €). À moins de 30 km de Yèbles : −3 €/stère (sauf 1 m). Filets d’allumage : 10 € l’unité.",
+      a: "De 75 € à 85 € le stère selon la longueur : 25 cm (85 €), 33 cm (80 €), 40 cm (84 €), 50 cm (75 €) et 1 m (78 €). À moins de 30 km de Yèbles : −3 €/stère (sauf 1 m). Frais de livraison à partir de 65 km de notre dépôt de Yèbles. Filets d’allumage : 10 € l’unité.",
     },
     {
       q: "Livrez-vous dans toute la Seine-et-Marne ?",
