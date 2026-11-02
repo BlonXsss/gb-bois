@@ -2,6 +2,7 @@
 
 import { business } from "@/lib/business";
 import { useOrder } from "@/lib/order-context";
+import { DeliveryFeeNote } from "./DeliveryFeeNote";
 import { QtyControl } from "./QtyControl";
 
 export function OrderConfigurator() {
@@ -119,7 +120,8 @@ export function OrderConfigurator() {
       <a href="#contact" className="btn-slate w-full">
         Commander ce volume
       </a>
-      <p className="mt-3.5 text-center text-[11px] leading-snug text-muted sm:text-xs">
+      <DeliveryFeeNote variant="panel" className="mt-3.5" />
+      <p className="mt-3 text-center text-[11px] leading-snug text-muted sm:text-xs">
         {business.minOrderNote}
       </p>
     </div>

@@ -12,6 +12,7 @@ import {
   getWeb3FormsAccessKey,
 } from "@/lib/contact-form";
 import { useOrder } from "@/lib/order-context";
+import { DeliveryFeeNote } from "./DeliveryFeeNote";
 import { QtyControl } from "./QtyControl";
 import { Reveal } from "./Reveal";
 
@@ -80,9 +81,7 @@ export function Pricing() {
             si votre adresse est à moins de {business.nearDiscountKm} km du dépôt
             de Yèbles (sauf bois 1 m).
           </p>
-          <p className="mt-3 text-sm font-medium text-ink/80 sm:text-[0.95rem]">
-            {business.deliveryFeeNote}
-          </p>
+          <DeliveryFeeNote variant="callout" className="mt-5" />
         </div>
       </Reveal>
 
@@ -192,6 +191,7 @@ export function Pricing() {
                       {qty} {business.unitLabelPlural} · {formatEuro(unitPrice)}
                       /st · ≈ {m3Approx.toLocaleString("fr-FR")} m³
                     </p>
+                    <DeliveryFeeNote variant="compact" className="mt-2.5" />
                     <a href="#contact" className="btn-amber mt-4 w-full">
                       Commander
                     </a>
@@ -421,6 +421,15 @@ export function Zones() {
                     Devis zone en ~5 min
                   </p>
                 </div>
+              </div>
+
+              <div className="mt-3 rounded-2xl border border-amber-light/35 bg-amber-light/10 px-4 py-3.5">
+                <p className="text-[0.7rem] uppercase tracking-[0.16em] text-amber-light">
+                  Frais de livraison
+                </p>
+                <p className="mt-1.5 text-sm font-medium leading-snug text-white">
+                  {business.deliveryFeeNote}
+                </p>
               </div>
             </div>
 
@@ -915,6 +924,7 @@ export function MidCta() {
             <p className="mt-4 max-w-md text-[0.975rem] leading-relaxed text-white sm:text-base">
               {business.midCta.text}
             </p>
+            <DeliveryFeeNote variant="dark" className="mt-4 max-w-md" />
             <div className="mt-7 flex flex-wrap gap-3">
               <a href={business.phoneHref} className="btn-amber">
                 Appeler — devis ~5 min
@@ -1168,6 +1178,7 @@ export function Contact() {
                 </svg>
                 Livraison depuis {business.depot.address}
               </p>
+              <DeliveryFeeNote variant="compact" className="mt-2.5" />
             </div>
           </div>
         </Reveal>

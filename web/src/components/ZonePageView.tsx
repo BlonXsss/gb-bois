@@ -2,6 +2,7 @@ import Link from "next/link";
 import { business } from "@/lib/business";
 import { seoZonePages, type SeoZonePage } from "@/lib/seo-zones";
 import { zonePath } from "@/lib/seo";
+import { DeliveryFeeNote } from "@/components/DeliveryFeeNote";
 import { Reveal } from "@/components/Reveal";
 
 export function ZonePageView({ zone }: { zone: SeoZonePage }) {
@@ -115,8 +116,11 @@ export function ZonePageView({ zone }: { zone: SeoZonePage }) {
               <p className="mt-5 border-t border-white/10 pt-4 text-xs leading-relaxed text-white/45">
                 Livraison depuis {business.depot.address}. Remise −
                 {business.nearDiscountEuros}&nbsp;€/stère &lt; {business.nearDiscountKm}{" "}
-                km (sauf 1 m). {business.deliveryFeeNote}
+                km (sauf 1 m).
               </p>
+              <div className="mt-3 rounded-xl border border-amber-light/35 bg-amber-light/10 px-3 py-2.5">
+                <DeliveryFeeNote variant="dark" />
+              </div>
             </aside>
           </Reveal>
         </div>
@@ -129,9 +133,9 @@ export function ZonePageView({ zone }: { zone: SeoZonePage }) {
           </h2>
           <p className="mt-2 max-w-2xl text-sm text-muted">
             Mêmes prix catalogue partout. Remise proximité −{business.nearDiscountEuros}{" "}
-            €/stère sous {business.nearDiscountKm} km de Yèbles (sauf 1 m).{" "}
-            {business.deliveryFeeNote}
+            €/stère sous {business.nearDiscountKm} km de Yèbles (sauf 1 m).
           </p>
+          <DeliveryFeeNote variant="strip" className="mt-4 max-w-2xl rounded-r-[1.1rem]" />
           <div className="mt-5 overflow-hidden rounded-[1.25rem] border border-ink/8 bg-white">
             <div className="grid grid-cols-3 gap-px bg-ink/8 text-center text-xs font-medium uppercase tracking-wider text-muted sm:grid-cols-5 sm:text-[0.7rem]">
               {business.lengths.map((l) => (

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { business } from "@/lib/business";
 import { seoZonePages } from "@/lib/seo-zones";
 import { zonePath } from "@/lib/seo";
+import { DeliveryFeeNote } from "@/components/DeliveryFeeNote";
 import { Reveal } from "@/components/Reveal";
 
 const rates = business.lengths.map((l) => ({
@@ -140,9 +141,9 @@ export function HomeSeo() {
                     Remise −{business.nearDiscountEuros} €/stère à moins de{" "}
                     {business.nearDiscountKm} km de Yèbles (sauf 1 m)
                   </p>
-                  <p className="mt-2 text-sm text-amber-light/90">
-                    {business.deliveryFeeNote}
-                  </p>
+                  <div className="mt-3 rounded-xl border border-amber-light/40 bg-amber-light/10 px-3 py-2.5">
+                    <DeliveryFeeNote variant="dark" />
+                  </div>
                 </div>
                 <ul className="divide-y divide-ink/6">
                   {rates.map((r) => (
