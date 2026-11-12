@@ -165,7 +165,7 @@ export const business = {
       price: 10,
       unit: "l’unité",
       blurb:
-        "Prêts à l’emploi pour démarrer le feu. Offert avec chaque commande de bois (selon disponibilité — précisez-le dans votre message).",
+        "Prêts à l’emploi pour démarrer le feu. Disponibles à l’unité (selon stock).",
       image: "/img/sac-fit.png",
     },
   ],
