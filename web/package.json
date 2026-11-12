@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "node -e \"const fs=require('fs');const id='gb-'+Date.now();fs.writeFileSync('public/version.json',JSON.stringify({buildId:id,builtAt:new Date().toISOString()},null,2)+'\\n')\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

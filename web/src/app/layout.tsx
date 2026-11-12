@@ -4,6 +4,7 @@ import "./globals.css";
 import { business } from "@/lib/business";
 import { OrderProvider } from "@/lib/order-context";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { HardRefresh } from "@/components/HardRefresh";
 import { absoluteUrl, homeSeo } from "@/lib/seo";
 
 const inter = Inter({
@@ -99,6 +100,7 @@ export default function RootLayout({
       >
         <OrderProvider>
           <ScrollProgress />
+          <HardRefresh />
           <a
             href="#contenu"
             className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-white focus:px-4 focus:py-2"
